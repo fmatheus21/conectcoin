@@ -1,226 +1,182 @@
-<div id="kt_aside" th:fragment="fragment"
-     class="aside aside-left  aside-fixed  d-flex flex-column flex-row-auto">
-    <!-- Brand -->
-    <div class="brand flex-column-auto " id="kt_brand">
-        <!-- Logo -->
-        <a th:href="@{#}" class="brand-logo"> 
-            <img alt="Logo" class="w-100-percent" th:src="@{/assets/media/logos/logo.png}" />
-        </a>
-        <!-- Logo -->
-    </div>
-    <!-- Brand -->
+        <aside id="sidebar-left" th:fragment="fragment" class="sidebar-left">
 
-    <!-- Menu -->
-    <div class="aside-menu-wrapper flex-column-fluid"
-         id="kt_aside_menu_wrapper">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    Navegação
+                </div>
+                <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
 
-        <!-- Menu Container -->
-        <div id="kt_aside_menu" class="aside-menu my-4 "
-             data-menu-vertical="1" data-menu-scroll="1"
-             data-menu-dropdown-timeout="500">
-            <!-- Menu Nav -->
-            <ul class="menu-nav ">
+            <div class="nano">
+                <div class="nano-content">
+                    <nav id="menu" class="nav-main" role="navigation">
 
-                <li id="dashboard" class="menu-item" aria-haspopup="true"><a
-                        th:href="@{/dashboard}" class="menu-link "><i
-                            class="menu-icon icon-2x flaticon-home-2"></i><span
-                            class="menu-text">Início</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon icon-2x flaticon-medal"></i><span
-                            class="menu-text">Graduação</span></a></li>
-
-                <li id="team-coaching" class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon icon-2x flaticon2-delivery-package "></i><span
-                            class="menu-text">Pacote</span></a></li>
-
-                <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                        <i class="menu-icon icon-2x flaticon-map "></i>
-                        <span class="menu-text">Rede</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu ">
-                        <i class="menu-arrow"></i>
-                        <ul class="menu-subnav">                            
-                            <li class="menu-item " aria-haspopup="true">
-                                <a href="#" class="menu-link ">
-                                    <i class="menu-bullet menu-bullet-line"><span></span></i>
-                                    <span class="menu-text">Árvore Binária</span>
-                                </a>
+                        <ul class="nav nav-main">
+                            <!--<li class="nav-active">-->
+                            <li id="dashboard">
+                                <a class="nav-link" th:href="@{/dashboard}">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <span>Página Inicial</span>
+                                </a>                        
                             </li>
-                            <li class="menu-item " aria-haspopup="true">
-                                <a href="#" class="menu-link ">
-                                    <i class="menu-bullet menu-bullet-line"><span></span></i>
-                                    <span class="menu-text">Sala de Espera</span>
-                                </a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/articles">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span>Comunicados</span>
+                                </a>                        
                             </li>
-                            <li class="menu-item " aria-haspopup="true">
-                                <a href="#" class="menu-link ">
-                                    <i class="menu-bullet menu-bullet-line"><span></span></i>
-                                    <span class="menu-text">Meus Diretos</span></a>
-                            </li>                            
+                            <li class="nav-parent nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-dollar-sign" aria-hidden="true"></i>
+                                    <span>Financiamentos</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="nav-item">
+                                        <a href="https://opusinvestimentos.com/panel/financings/term">
+                                            Termo Aceite de Dívida
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/financings/programming">
+                                            Programação de Pagamentos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/shopping">
+                                    <span class="float-right badge badge-success">Novo</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span>Loja</span>
+                                </a>                        
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/contributions">
+                                    <i class="fa fa-wallet" aria-hidden="true"></i>
+                                    <span>Contribuições</span>
+                                </a>                        
+                            </li>
+                            <li id="pedido">
+                                <a class="nav-link" th:href="@{/pedidos}">
+                                    <i class="fa fa-receipt" aria-hidden="true"></i>
+                                    <span>Meus Pedidos</span>
+                                </a>                        
+                            </li>
+                            <li class="nav-parent ">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                    <span>Minha Rede</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/tree/sponsored">
+                                            Meus Indicados
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/tree/team">
+                                            Rede Unilevel
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-parent ">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-money-bill" aria-hidden="true"></i>
+                                    <span>Financeiro</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/e-wallet/summary">
+                                            Saldo
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/e-wallet/extract">
+                                            Extrato Detalhado
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/e-wallet/payout">
+                                            Meus Saques
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/e-wallet/paywithbalance">
+                                            Pagar Pedido com Saldo
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/graduations">
+                                    <i class="fa fa-chart-line" aria-hidden="true"></i>
+                                    <span>Plano de Carreira</span>
+                                </a>                        
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/awards">
+                                    <i class="fa fa-gift" aria-hidden="true"></i>
+                                    <span>Programa de Pts</span>
+                                </a>                        
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/downloads">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    <span>Materiais de Apoio</span>
+                                </a>                        
+                            </li>
+                            <li class="">
+                                <a class="nav-link" href="https://opusinvestimentos.com/panel/tickets">
+                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
+                                    <span>Suporte</span>
+                                </a>               
+                            </li>
+                            <li class="nav-parent ">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span>Minha Conta</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/settings/profile">
+                                            Meus dados
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/settings/address">
+                                            Endereço
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/settings/password">
+                                            Alterar senha
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://opusinvestimentos.com/panel/settings/googleAuthenticator">
+                                            Google Authenticator
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
-                    </div>
-                </li>
+                    </nav>
+                </div>
 
+                <script>
+                    // Maintain Scroll Position
+                    if (typeof localStorage !== 'undefined') {
+                        if (localStorage.getItem('sidebar-left-position') !== null) {
+                            var initialPosition = localStorage.getItem('sidebar-left-position'),
+                                    sidebarLeft = document.querySelector('#sidebar-left .nano-content');
 
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-calendar-with-a-clock-time-tools"></i><span
-                            class="menu-text">Agenda</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-interface-10"></i><span
-                            class="menu-text">Exercícios</span></a></li>
-
-                <li id="assessments"class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-statistics"></i><span
-                            class="menu-text">Avaliação</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-multimedia-2 "></i><span
-                            class="menu-text">Mensagens</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-graphic"></i><span
-                            class="menu-text">Relatórios</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-browser"></i><span
-                            class="menu-text">Site Pessoal</span></a></li>			
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-visible "></i><span
-                            class="menu-text">Observatório</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon2-gift"></i><span
-                            class="menu-text">Bônus</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-questions-circular-button"></i><span
-                            class="menu-text">Tutoriais</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-support"></i><span
-                            class="menu-text">Fale Conosco</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon-imac"></i><span
-                            class="menu-text">TV Fabracis</span></a></li>
-
-                <li class="menu-item" aria-haspopup="true"><a
-                        th:href="@{#}" class="menu-link "><i
-                            class="menu-icon flaticon2-layers-1"></i><span
-                            class="menu-text">Cis Assessment</span></a></li>
-
-
-                <!-- 	<li class="menu-item  menu-item-submenu" aria-haspopup="true"
-                                data-menu-toggle="hover"><a href="javascript:;"
-                                class="menu-link menu-toggle"><i
-                                        class="menu-icon flaticon2-telegram-logo"></i><span
-                                        class="menu-text">Actions</span><i class="menu-arrow"></i></a>
-                        <div class="menu-submenu ">
-                                        <i class="menu-arrow"></i>
-                                        <ul class="menu-subnav">
-                                                <li class="menu-item  menu-item-parent" aria-haspopup="true"><span
-                                                        class="menu-link"><span class="menu-text">Actions</span></span></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span
-                                                                class="menu-text">Reports</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span
-                                                                class="menu-text">Messages</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span
-                                                                class="menu-text">Notes</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span
-                                                                class="menu-text">Remarks</span></a></li>
-                                        </ul>
-                                </div></li>
-                        <li class="menu-item  menu-item-submenu" aria-haspopup="true"
-                                data-menu-toggle="hover"><a href="javascript:;"
-                                class="menu-link menu-toggle"><i
-                                        class="menu-icon flaticon2-laptop"></i><span class="menu-text">Pages</span><i
-                                        class="menu-arrow"></i></a>
-                        <div class="menu-submenu ">
-                                        <i class="menu-arrow"></i>
-                                        <ul class="menu-subnav">
-                                                <li class="menu-item  menu-item-parent" aria-haspopup="true"><span
-                                                        class="menu-link"><span class="menu-text">Pages</span></span></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Reports</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Apps</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Downloads</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Tasks</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Events</span></a></li>
-                                        </ul>
-                                </div></li>
-                        <li class="menu-item  menu-item-submenu" aria-haspopup="true"
-                                data-menu-toggle="hover"><a href="javascript:;"
-                                class="menu-link menu-toggle"><i
-                                        class="menu-icon flaticon2-browser-2"></i><span class="menu-text">Reports</span><i
-                                        class="menu-arrow"></i></a>
-                        <div class="menu-submenu ">
-                                        <i class="menu-arrow"></i>
-                                        <ul class="menu-subnav">
-                                                <li class="menu-item  menu-item-parent" aria-haspopup="true"><span
-                                                        class="menu-link"><span class="menu-text">Reports</span></span></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Cases</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Messages</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Reports</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">Calendar</span></a></li>
-                                                <li class="menu-item " aria-haspopup="true"><a href="#"
-                                                        class="menu-link "><i class="menu-bullet menu-bullet-dot"><span></span></i><span
-                                                                class="menu-text">FAQ</span></a></li>
-                                        </ul>
-                                </div></li>
-                        <li class="menu-item " aria-haspopup="true"><a
-                                href="javascript:;" class="menu-link "><i
-                                        class="menu-icon flaticon2-console"></i><span class="menu-text">Console</span></a></li>
-                        <li class="menu-item " aria-haspopup="true"><a
-                                href="javascript:;" class="menu-link "><i
-                                        class="menu-icon flaticon2-console"></i><span class="menu-text">System</span></a></li>
-                        <li class="menu-item " aria-haspopup="true"><a href="#"
-                                class="menu-link "><i class="menu-icon flaticon2-graph-1"></i><span
-                                        class="menu-text">Logs</span></a></li>
-                -->
-
-            </ul>
-            <!-- Menu Nav -->
-        </div>
-        <!-- Menu Container -->
-    </div>
-    <!-- Menu -->
-</div>
+                            sidebarLeft.scrollTop = initialPosition;
+                        }
+                    }
+                </script>
+            </div>
+        </aside>
+       

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.firecode_conectcoin_jar_0.0.1PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.firecode.app.model.entity.PessoaEntity</class>
+    <class>com.firecode.app.model.entity.ContatoEntity</class>
+    <class>com.firecode.app.model.entity.InvestimentoCategoriaEntity</class>
+    <class>com.firecode.app.model.entity.PagamentoMenorEquipeEntity</class>
+    <class>com.firecode.app.model.entity.IndicadoEntity</class>
+    <class>com.firecode.app.model.entity.ContaBancariaEntity</class>
+    <class>com.firecode.app.model.entity.SaqueStatusEntity</class>
+    <class>com.firecode.app.model.entity.InvestimentoPagamentoEntity</class>
+    <class>com.firecode.app.model.entity.PontuacaoEntity</class>
+    <class>com.firecode.app.model.entity.SaqueEntity</class>
+    <class>com.firecode.app.model.entity.UsuarioStatusEntity</class>
+    <class>com.firecode.app.model.entity.InvestimentoConfigEntity</class>
+    <class>com.firecode.app.model.entity.GeneroEntity</class>
+    <class>com.firecode.app.model.entity.UsuarioEntity</class>
+    <class>com.firecode.app.model.entity.PermissaoEntity</class>
+    <class>com.firecode.app.model.entity.PagamentoMensalEntity</class>
+    <class>com.firecode.app.model.entity.PessoaTipoEntity</class>
+    <class>com.firecode.app.model.entity.EquipeEntity</class>
+    <class>com.firecode.app.model.entity.EnderecoEntity</class>
+    <class>com.firecode.app.model.entity.InvestimentoStatusEntity</class>
+    <class>com.firecode.app.model.entity.InvestidorEntity</class>
+    <class>com.firecode.app.model.entity.UsuarioPermissaoMapEntity</class>
+    <class>com.firecode.app.model.entity.SaldoEntity</class>
+    <class>com.firecode.app.model.entity.InvestimentoEntity</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/conectcoin?serverTimezone=UTC&amp;useLegacyDatetimeCode=true"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="210683"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,54 +1,56 @@
-<div id="kt_header"  th:fragment="fragment"   class="header  header-fixed ">
-
-    <!--begin::Container-->
-    <div
-        class=" container-fluid  d-flex align-items-stretch justify-content-between">
-
-        <!--begin::Header Menu Wrapper-->
-        <div class="header-menu-wrapper header-menu-wrapper-left"
-             id="kt_header_menu_wrapper">		
-
-            <!--begin::Header Menu-->
-            <div th:replace="app/template/header-menu :: fragment"></div>
-            <!--end::Header Menu-->
-
+<header th:fragment="fragment" class="header">
+        <div class="logo-container">
+            <a href="https://opusinvestimentos.com/panel" class="logo">
+                <img th:src="@{/app/assets/dist/img/logo2.png}" height="40" alt="Opus Investimentos" />
+            </a>
+            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
         </div>
-        <!--end::Header Menu Wrapper-->
 
-        <!--begin::Topbar-->
-        <div class="topbar">					
+        <!-- start: search & user box -->
+        <div class="header-right">   
+            <span class="separator"></span>
 
-            <!--begin::Toggle Search-->
-            <div th:replace="app/template/toggle-search :: fragment"></div>
-            <!--end::Toggle Search-->
+            <div id="userbox" class="userbox">
+                <a href="#" data-toggle="dropdown">
+                    <figure class="profile-picture">
+                        <img th:src="@{/app/assets/dist/img/user_male.png}" class="rounded-circle" />
+                    </figure>
+                    <div class="profile-info">
+                        <span class="name">Fagner Santos Silva</span>
+                        <span class="role">fagner17</span>
+                    </div>
 
-            <!--begin::Toggle Notifications-->
-            <div th:replace="app/template/toggle-notification :: fragment"></div>
-            <!--end::Toggle Notifications-->
+                    <i class="fa custom-caret"></i>
+                </a>
 
-            <!--begin::Toggle Actions-->
-            <div th:replace="app/template/toggle-action :: fragment"></div>
-            <!--end::Toggle Actions-->
-
-            <!--begin::Toggle Quick-->
-            <div th:replace="app/template/toggle-quick :: fragment"></div>
-            <!--end::Toggle Quick-->
-
-            <!--begin::Toggle Chat-->
-            <div th:replace="app/template/toggle-chat :: fragment"></div>
-            <!--end::Toggle Chat-->
-
-            <!--begin::Languages-->
-            <div th:replace="app/template/toggle-language :: fragment"></div>
-            <!--end::Languages-->
-
-            <!--begin::User-->
-            <div th:replace="app/template/toggle-user :: fragment"></div>
-            <!--end::User-->							
-
+                <div class="dropdown-menu">
+                    <ul class="list-unstyled mb-2">
+                        <li class="divider"></li>
+                        <li>
+                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/profile">
+                                <i class="fa fa-user"></i> Meus dados
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/googleAuthenticator">
+                                <i class="fa fa-lock"></i> Google Authenticator
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/password">
+                                <i class="fa fa-lock"></i> Alterar senha
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/logout">
+                                <i class="fa fa-power-off"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <!--end::Topbar-->
-    </div>
-    <!--end::Container-->
-</div>
-
+        <!-- end: search & user box -->
+    </header>

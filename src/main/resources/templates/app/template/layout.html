@@ -1,239 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+<html class="fixed sidebar-left-xs sidebar-left-collapsed " lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <head>
-        <meta charset="utf-8" />
-
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" th:href="@{/app/assets/dist/img/favicon.ico}">
         <title th:text="${pageTitle}"></title>
         <meta name="description" content="Default form examples" />
-        <meta name="viewport"  content="width=device-width, initial-scale=1, shrink-to-fit=no" />        
 
-        <link th:href="@{/app/assets/plugins/custom/kanban/kanban.bundle.css?v=0.0.1}" rel="stylesheet" type="text/css" />
 
-        <!-- Global Theme Styles(used by all pages) -->
-        <link th:href="@{/app/assets/plugins/global/plugins.bundle.css?v=0.0.1}"  rel="stylesheet" type="text/css" />
-        <link th:href="@{/app/assets/plugins/custom/prismjs/prismjs.bundle.css?v=0.0.1}"  rel="stylesheet" type="text/css" />
-        <link th:href="@{/app/assets/css/style.bundle.css?v=0.0.1}" rel="stylesheet" type="text/css" />
-        <link th:href="@{/app/assets/css/custom.css?v=0.0.1}" rel="stylesheet" type="text/css" />        
-        <!-- Global Theme Styles(used by all pages) -->
+        <!-- Styles -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/bootstrap/css/bootstrap.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/animate/animate.css}">
 
-        <link rel="icon" type="image/png" th:href="@{/app/assets/media/logos/favicon.png}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/font-awesome/css/all.min.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/magnific-popup/magnific-popup.css}" />
+              	
+
+        <!-- Theme CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/theme.css}" />
+
+        <!-- Skin CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/skins/default.css}" />
+
+        <!-- Theme Custom CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/custom.css}">
+
+        <!-- Head Libs -->
+        <script th:src="@{/app/assets/theme/template-vendor/modernizr/modernizr.js}"></script>
+
 
 
     </head>
 
 
-    <!--begin::Body-->
-    <body id="kt_body"
-          class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
-
-        <!--begin::Main-->
+</body>
+<!-- Body -->
 
 
-        <!--begin::Header Mobile-->
-        <div th:replace="app/template/header-mobile :: fragment"></div>
-        <!--end::Header Mobile-->
-
-        <div class="d-flex flex-column flex-root">
-
-            <!--begin::Page-->
-            <div class="d-flex flex-row flex-column-fluid page">
-
-                <!--begin::Aside-->
-                <div th:replace="app/template/aside :: fragment"></div>
-                <!--end::Aside-->
-
-                <!--begin::Wrapper-->
-                <div class="d-flex flex-column flex-row-fluid wrapper"
-                     id="kt_wrapper">
-
-                    <!--begin::Header-->
-                    <div th:replace="app/template/header :: fragment"></div>
-                    <!--end::Header-->
-
-                    <!--begin::Content-->
-                    <div class="content  d-flex flex-column flex-column-fluid"
-                         id="kt_content">
-
-                        <!--begin::Subheader-->
-                        <div th:replace="app/template/subheader :: fragment"></div>
-                        <!--end::Subheader-->
-
-                        <!--begin::Entry-->
-                        <div class="d-flex flex-column-fluid">
-                            <!--begin::Container-->
-                            <div id="container" class=" container ">
-                                <div id="row" class="row">
-                                    <div class="col-lg-12">
-                                        <!--begin::Card-->
-                                        <div class="card card-custom">
-                                            <div class="card-header">
-                                                <h3 class="card-title">[[${formTitle}]]</h3>
-                                                <div class="card-toolbar">
-                                                    <a th:if="${buttonBack == true}"  href="#"
-                                                       class="btn btn-light-primary font-weight-bolder mr-2"  onclick="window.history.go(-1);" data-container="body" data-toggle="tooltip" data-placement="top" title="Voltar">
-                                                        <i class="ki ki-long-arrow-back icon-md"></i> Voltar
-                                                    </a>
-                                                    <a th:if="${buttonAdd == true}"  th:href="@{${buttonAddLink}}"
-                                                       class="btn btn-light-success font-weight-bolder mr-2" data-container="body" data-toggle="tooltip" data-placement="top" title="Novo">
-                                                        <i class="flaticon-plus icon-md"></i> Novo
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <!-- Content Fragment -->
-                                            <div layout:fragment="content"></div>
-                                            <!-- Content Fragment -->
 
 
-                                        </div>
-                                        <!--end::Card-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Container-->
-                        </div>
-                        <!--end::Entry-->
+<section class="body">
 
 
-                    </div>
-                    <!--end::Content-->
+    <!-- Header -->
+    <div th:replace="app/template/header :: fragment"></div>
+    <!-- Header -->
 
-                    <!--begin::Footer-->
-                    <div th:replace="app/template/footer :: fragment"></div>
-                    <!--end::Footer-->
+    <div class="inner-wrapper">
 
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Page-->
-        </div>
-        <!--end::Main-->
+        <!-- Aside -->
+        <div th:replace="app/template/aside :: fragment"></div>
+        <!-- Aside -->
 
 
-        <!-- begin::Panel User-->
-        <div th:replace="app/template/panel-user :: fragment"></div>
-        <!-- end::Panel User-->       
+        <section role="main" class="content-body ">
+            <header class="page-header">
+                <h2> [[${headerTitle}]]</h2>
+            </header>        
 
-        <!--begin::Panel Quick-->
-        <div th:replace="app/template/panel-quick :: fragment"></div>
-        <!--end::Panel Quick-->
+            <!-- Content Fragment -->
+            <div layout:fragment="content"></div>
+            <!-- Content Fragment -->            
+            
 
-        <!--begin::Panel Chat-->
-        <div th:replace="app/template/panel-chat :: fragment"></div>
-        <!--end::Panel Chat-->
-
-        <!--begin::Scrolltop-->
-        <div th:replace="app/template/scroll-top :: fragment"></div>
-        <!--end::Scrolltop-->
-
-        <!--begin::Sticky Toolbar-->
-        <div th:replace="app/template/sticky-toolbar :: fragment"></div>
-        <!--end::Sticky Toolbar-->
-
-        <!--begin::Demo Panel-->
-        <div th:replace="app/template/panel-demo :: fragment"></div>
-        <!--end::Demo Panel-->
+        </section>
 
 
-        <script>
-            var KTAppSettings = {
-                "breakpoints": {
-                    "sm": 576,
-                    "md": 768,
-                    "lg": 992,
-                    "xl": 1200,
-                    "xxl": 1400
-                },
-                "colors": {
-                    "theme": {
-                        "base": {
-                            "white": "#ffffff",
-                            "primary": "#3699FF",
-                            "secondary": "#E5EAEE",
-                            "success": "#1BC5BD",
-                            "info": "#8950FC",
-                            "warning": "#FFA800",
-                            "danger": "#F64E60",
-                            "light": "#E4E6EF",
-                            "dark": "#181C32"
-                        },
-                        "light": {
-                            "white": "#ffffff",
-                            "primary": "#E1F0FF",
-                            "secondary": "#EBEDF3",
-                            "success": "#C9F7F5",
-                            "info": "#EEE5FF",
-                            "warning": "#FFF4DE",
-                            "danger": "#FFE2E5",
-                            "light": "#F3F6F9",
-                            "dark": "#D6D6E0"
-                        },
-                        "inverse": {
-                            "white": "#ffffff",
-                            "primary": "#ffffff",
-                            "secondary": "#3F4254",
-                            "success": "#ffffff",
-                            "info": "#ffffff",
-                            "warning": "#ffffff",
-                            "danger": "#ffffff",
-                            "light": "#464E5F",
-                            "dark": "#ffffff"
-                        }
-                    },
-                    "gray": {
-                        "gray-100": "#F3F6F9",
-                        "gray-200": "#EBEDF3",
-                        "gray-300": "#E4E6EF",
-                        "gray-400": "#D1D3E0",
-                        "gray-500": "#B5B5C3",
-                        "gray-600": "#7E8299",
-                        "gray-700": "#5E6278",
-                        "gray-800": "#3F4254",
-                        "gray-900": "#181C32"
-                    }
-                },
-                "font-family": "Poppins"
-            };
-        </script>
-        <!--end::Global Config-->
+</section>
 
 
-        <!--Global Theme Bundle(used by all pages) -->
-        <script th:src="@{/app/assets/plugins/global/plugins.bundle.js}"></script>
-        <script th:src="@{/app/assets/plugins/custom/prismjs/prismjs.bundle.js}"></script>
-        <script th:src="@{/app/assets/js/scripts.bundle.js}"></script>
-        <script th:src="@{/app/assets/js/breadcrumbs.js}"></script>
-        <script th:src="@{/app/assets/js/form-validation.js}"></script>
-        <script th:src="@{/app/assets/js/image-input.js}"></script>	
-        <script th:src="@{/app/assets/js/action.js}"></script>
-        <!--Global Theme Bundle(used by all pages) -->     
-
-        <!-- Impedir a tecla enter dentro do form -->
-        <script>
-            $(document).ready(function () {
-                $(window).keydown(function (event) {
-                    if ((event.keyCode === 13) && !$(document.activeElement).is('textarea')) {
-                        event.preventDefault();
-                        return false;
-                    }
-                });
-            });
-        </script>
-        <!--<script>
-            $('form').keypress(function (e) {
-                if (e.which === 13) {
-                    e.preventDefault();
-                    console.log('Não vou enviar');
-                }
-            });
-        </script>-->
 
 
-    </body>
-    <!-- Body -->
+
+
+
+
+
+<!-- Vendor -->
+<script th:src="@{/app/assets/theme/template-vendor/jquery/jquery.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/popper/umd/popper.min.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/bootstrap/js/bootstrap.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/nanoscroller/nanoscroller.js}"></script>
+<!--<script th:src="@{/app/assets/theme/template-vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/common/common.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/magnific-popup/jquery.magnific-popup.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jquery-placeholder/jquery-placeholder.js}"></script>-->
+
+<!-- Specific Page Vendor -->
+<!--<script th:src="@{/app/assets/theme/template-vendor/jquery-ui/jquery-ui.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jqueryui-touch-punch/jqueryui-touch-punch.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jquery-appear/jquery-appear.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/bootstrap-multiselect/bootstrap-multiselect.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/select2/js/select2.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/datatables/media/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/datatables/media/js/dataTables.bootstrap4.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/flot/jquery.flot.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/flot.tooltip/flot.tooltip.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/flot/jquery.flot.categories.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/flot/jquery.flot.resize.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/jquery-sparkline/jquery-sparkline.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/raphael/raphael.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/morris/morris.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/gauge/gauge.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/snap.svg/snap.svg.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/liquid-meter/liquid.meter.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/ios7-switch/ios7-switch.js}"></script>
+<script th:src="@{/app/assets/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/pnotify/pnotify.custom.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/summernote/summernote-bs4.js}"></script>-->
+
+<!-- Theme Base, Components and Settings -->
+<script th:src="@{/app/assets/theme/js/theme.js}"></script>
+
+<!-- Theme Custom -->
+<!--<script th:src="@{/app/assets/theme/js/custom.js}"></script>-->
+
+<!-- Theme Initialization Files -->
+<script th:src="@{/app/assets/theme/js/theme.init.js}"></script>
+
+<script th:src="@{/app/assets/theme/js/breadcrumbs.js}"></script>
+
+
+<script type="text/javascript">
+/*for (var i = 0; i < document.links.length; i++) {
+    if (document.links[i].href === document.URL) {
+        document.links[i].className = 'nav-active';
+    }
+}*/  
+    
+</script>
+
+
+</body>
+<!-- Body -->
 
 
 </html>

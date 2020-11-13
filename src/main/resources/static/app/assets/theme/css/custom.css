@@ -1,0 +1,164 @@
+/* Add here all your CSS customizations */
+.bg-login {
+    background: url(../../dist/img/bg-login.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.dataTables_wrapper .dataTables_empty {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.body-sign.join {
+    max-width: 650px;
+}
+
+@media only screen and (max-width: 767px) {
+    .userbox .name, .userbox .role {
+        max-width: 200px;
+    }
+    .userbox .profile-picture {
+        display: inline;
+    }
+    .userbox .role {
+        overflow: visible;
+    }
+    .userbox .custom-caret {
+        margin-right: 20px;
+    }
+}
+
+/* BINARY */
+.binary .backtotop {
+	text-align: center;
+}
+.binary .backtotop a {
+	display: inline-block;
+	background: #555;
+	padding: 5px 8px 4px;
+	width: 87px;
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+}
+.binary .backtotop a:hover {
+	background: #000;
+}
+.binary table.tree {
+	margin: 0 auto;
+	width: 100% !important;
+}
+.binary table.tree tr {
+	border: 0;
+	padding: 0;
+}
+.binary table.tree tr td {
+	border: 0;
+	padding: 5px 2px;
+	text-align: center;
+}
+.binary table.tree tr td.aleft {
+	border-right: solid 1px #5e6870;
+	border-bottom: solid 1px #5e6870;
+}
+.binary table.tree tr td.aright {
+	border-left: solid 1px #5e6870;
+	border-bottom: solid 1px #5e6870;
+}
+.binary table.tree tr td.bleft {
+	border-right: solid 1px #5e6870;
+}
+.binary table.tree tr td.dbottom {
+	border-bottom: solid 1px #5e6870;
+}
+.binary table.tree tr td div img {
+	display: block;
+	margin: 0 auto;
+}
+.binary table.tree tr td.inactive div img {
+	opacity: .7;
+}
+.binary table.tree tr td.inactive:hover div img {
+	opacity: 1;
+}
+
+/* MATRIX */
+#matrix table {
+	text-align: center;
+	border-collapse: collapse;
+	width: 100%;
+}
+#matrix table tr td {
+	border: 0;
+	padding: 5px 2px;
+	text-align: center;
+	vertical-align: top;
+}
+#matrix table tr td.inactive {
+	padding: 10px 5px;
+}
+#matrix table tr td div img {
+	display: block;
+	margin: 0 auto;
+	opacity: 1;
+}
+#matrix table tr td.inactive div img {
+	opacity: .7;
+}
+#matrix table tr td.a1 {
+	border-bottom: solid 1px #bbb;
+}
+#matrix table tr td.a1l {
+	border-bottom: solid 1px #bbb;
+	border-right: solid 1px #bbb;
+}
+#matrix table tr td.a1r {
+	border-bottom: solid 1px #bbb;
+	border-left: solid 1px #bbb;
+}
+#matrix table tr td.a2 {
+	border-left: solid 1px #bbb;
+}
+#matrix table tr td a {
+	color: #333;
+}
+#matrix table tr td a:hover {
+	color: #DD8800;
+	text-decoration: none;
+}
+#matrix table tr td span {
+	display: block;
+	padding: 5px;
+	line-height: 12px;
+	font-size: .9em;
+}
+#matrix table tr td span strong {
+	font-size: 1em;
+}
+#matrix table tr td table {
+	width: 100%;
+}
+#matrix table tr td i {
+	font-size: .65em;
+	font-style: normal;
+	font-weight: normal;
+}
+.note-editor .note-toolbar {
+	background-color: #f5f5f5 !important;
+}
+.widget-summary .summary .amount {
+    font-size: 1rem;
+}
+
+.well {
+    background-color: #e4e4e4!important;
+}
+
+.well.border-dark {
+    border-color: #aeaeae !important;
+}

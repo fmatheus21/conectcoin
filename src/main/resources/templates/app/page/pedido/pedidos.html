@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+            <div class="card card-primary">
+                <header class="card-header">
+                    <h2 class="card-title">
+                        <i class="fa fa-list"></i>
+                        Meus Pedidos
+                    </h2>
+                </header>
+                <div class="card-body">
+                    <table class="table data-paginate table-striped table-hover">
+                        <thead><tr>
+                                <th>#</th>
+                                <th>Categoria</th>
+                                <th>Criada em</th>
+                                <th>Valor</th>
+                                <th>Pontos</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr></thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">1321</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    24/03/2019
+                                </td>
+                                <td>
+                                    R$ 150,00
+                                </td>
+                                <td>
+                                    15,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">1381</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    25/03/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                   <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">2445</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    09/04/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                     <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">2448</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    09/04/2019
+                                </td>
+                                <td>
+                                    R$ 200,00
+                                </td>
+                                <td>
+                                    20,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">3234</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    20/04/2019
+                                </td>
+                                <td>
+                                    R$ 150,00
+                                </td>
+                                <td>
+                                    15,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">4175</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    06/05/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">4176</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    06/05/2019
+                                </td>
+                                <td>
+                                    R$ 200,00
+                                </td>
+                                <td>
+                                    20,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">4178</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    06/05/2019
+                                </td>
+                                <td>
+                                    R$ 350,00
+                                </td>
+                                <td>
+                                    35,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">4184</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    06/05/2019
+                                </td>
+                                <td>
+                                    R$ 137,40
+                                </td>
+                                <td>
+                                    13,74
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">13913</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    23/07/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">13914</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Investimento</span>
+                                </td>
+                                <td>
+                                    23/07/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="badge badge-indigo">28721</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Contribuição</span>
+                                </td>
+                                <td>
+                                    04/09/2019
+                                </td>
+                                <td>
+                                    R$ 100,00
+                                </td>
+                                <td>
+                                    10,00
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Cancelada</span>
+                                </td>
+                                <td>
+                                      <a th:href="@{/pedidos/1}" data-toggle="tooltip" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-eye fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>    
+
+                    <div  id="DataTables_Table_0_paginate" class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
+                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+                            </li>
+                            <li class="paginate_button page-item active">
+                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                            </li><li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                            </li>
+                            <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">Próximo</a>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>
+            </div>
+
+
+  <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                pedido();
+            });
+        </script>
+        
+
+    </div>
+    <!-- Fragment -->
+</html>
