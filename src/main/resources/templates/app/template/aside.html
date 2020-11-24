@@ -1,182 +1,182 @@
-        <aside id="sidebar-left" th:fragment="fragment" class="sidebar-left">
+<aside id="sidebar-left" th:fragment="fragment" class="sidebar-left">
 
-            <div class="sidebar-header">
-                <div class="sidebar-title">
-                    Navegação
-                </div>
-                <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Navegação
+        </div>
+        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
 
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
 
-                        <ul class="nav nav-main">
-                            <!--<li class="nav-active">-->
-                            <li id="dashboard">
-                                <a class="nav-link" th:href="@{/dashboard}">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Página Inicial</span>
-                                </a>                        
+                <ul class="nav nav-main">
+                    <!--<li class="nav-active">-->
+                    <li id="dashboard">
+                        <a class="nav-link" th:href="@{/app/dashboard}">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://opusinvestimentos.com/panel/articles">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                            <span>Comunicados</span>
+                        </a>                        
+                    </li>
+                    <li id="programacao-pagamento" class="nav-parent nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-dollar-sign" aria-hidden="true"></i>
+                            <span>Financiamentos</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-item">
+                                <a href="#">
+                                    Termo Aceite de Dívida
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/articles">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                    <span>Comunicados</span>
-                                </a>                        
-                            </li>
-                            <li class="nav-parent nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-dollar-sign" aria-hidden="true"></i>
-                                    <span>Financiamentos</span>
+                                <a th:href="@{/app/financiamento/pagamentos}">
+                                    Programação de Pagamentos
                                 </a>
-                                <ul class="nav nav-children">
-                                    <li class="nav-item">
-                                        <a href="https://opusinvestimentos.com/panel/financings/term">
-                                            Termo Aceite de Dívida
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/financings/programming">
-                                            Programação de Pagamentos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/shopping">
-                                    <span class="float-right badge badge-success">Novo</span>
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <span>Loja</span>
-                                </a>                        
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/contributions">
-                                    <i class="fa fa-wallet" aria-hidden="true"></i>
-                                    <span>Contribuições</span>
-                                </a>                        
-                            </li>
-                            <li id="pedido">
-                                <a class="nav-link" th:href="@{/pedidos}">
-                                    <i class="fa fa-receipt" aria-hidden="true"></i>
-                                    <span>Meus Pedidos</span>
-                                </a>                        
-                            </li>
-                            <li class="nav-parent ">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-sitemap" aria-hidden="true"></i>
-                                    <span>Minha Rede</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/tree/sponsored">
-                                            Meus Indicados
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/tree/team">
-                                            Rede Unilevel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-parent ">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-money-bill" aria-hidden="true"></i>
-                                    <span>Financeiro</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/e-wallet/summary">
-                                            Saldo
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/e-wallet/extract">
-                                            Extrato Detalhado
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/e-wallet/payout">
-                                            Meus Saques
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/e-wallet/paywithbalance">
-                                            Pagar Pedido com Saldo
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/graduations">
-                                    <i class="fa fa-chart-line" aria-hidden="true"></i>
-                                    <span>Plano de Carreira</span>
-                                </a>                        
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/awards">
-                                    <i class="fa fa-gift" aria-hidden="true"></i>
-                                    <span>Programa de Pts</span>
-                                </a>                        
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/downloads">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                    <span>Materiais de Apoio</span>
-                                </a>                        
-                            </li>
-                            <li class="">
-                                <a class="nav-link" href="https://opusinvestimentos.com/panel/tickets">
-                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
-                                    <span>Suporte</span>
-                                </a>               
-                            </li>
-                            <li class="nav-parent ">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span>Minha Conta</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/settings/profile">
-                                            Meus dados
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/settings/address">
-                                            Endereço
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/settings/password">
-                                            Alterar senha
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="https://opusinvestimentos.com/panel/settings/googleAuthenticator">
-                                            Google Authenticator
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
-                    </nav>
-                </div>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">
+                            <span class="float-right badge badge-success">Novo</span>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>Loja</span>
+                        </a>                        
+                    </li>
+                    <li id="contribuicao">
+                        <a class="nav-link" th:href="@{/app/contribuicao}">
+                            <i class="fa fa-wallet" aria-hidden="true"></i>
+                            <span>Contribuições</span>
+                        </a>                        
+                    </li>
+                    <li id="pedido">
+                        <a class="nav-link" th:href="@{/app/pedidos}">
+                            <i class="fa fa-receipt" aria-hidden="true"></i>
+                            <span>Meus Pedidos</span>
+                        </a>                        
+                    </li>
+                    <li id="rede" class="nav-parent ">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-sitemap" aria-hidden="true"></i>
+                            <span>Minha Rede</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/app/redes/indicados}">
+                                    Meus Indicados
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/app/redes/unilateral}">
+                                    Rede Unilevel
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="financeiro" class="nav-parent ">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-money-bill" aria-hidden="true"></i>
+                            <span>Financeiro</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/app/financeiro/saldo}">
+                                    Saldo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/app/financeiro/extrato}">
+                                    Extrato Detalhado
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/app/financeiro/saques}">
+                                    Meus Saques
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/app/financeiro/pagar}">
+                                    Pagar Pedido com Saldo
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="carreira">
+                        <a class="nav-link" th:href="@{/app/carreira/plano}">
+                            <i class="fa fa-chart-line" aria-hidden="true"></i>
+                            <span>Plano de Carreira</span>
+                        </a>                        
+                    </li>
+                    <li class="">
+                        <a class="nav-link" href="https://opusinvestimentos.com/panel/awards">
+                            <i class="fa fa-gift" aria-hidden="true"></i>
+                            <span>Programa de Pts</span>
+                        </a>                        
+                    </li>
+                    <li class="">
+                        <a class="nav-link" href="https://opusinvestimentos.com/panel/downloads">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            <span>Materiais de Apoio</span>
+                        </a>                        
+                    </li>
+                    <li>
+                        <a class="nav-link" th:href="@{/app/suporte/tickets}">
+                            <i class="fa fa-life-ring" aria-hidden="true"></i>
+                            <span>Suporte</span>
+                        </a>               
+                    </li>
+                    <li class="nav-parent ">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Minha Conta</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="">
+                                <a href="https://opusinvestimentos.com/panel/settings/profile">
+                                    Meus dados
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://opusinvestimentos.com/panel/settings/address">
+                                    Endereço
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://opusinvestimentos.com/panel/settings/password">
+                                    Alterar senha
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://opusinvestimentos.com/panel/settings/googleAuthenticator">
+                                    Google Authenticator
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-                <script>
-                    // Maintain Scroll Position
-                    if (typeof localStorage !== 'undefined') {
-                        if (localStorage.getItem('sidebar-left-position') !== null) {
-                            var initialPosition = localStorage.getItem('sidebar-left-position'),
-                                    sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+        <script>
+            // Maintain Scroll Position
+            if (typeof localStorage !== 'undefined') {
+                if (localStorage.getItem('sidebar-left-position') !== null) {
+                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                            sidebarLeft = document.querySelector('#sidebar-left .nano-content');
 
-                            sidebarLeft.scrollTop = initialPosition;
-                        }
-                    }
-                </script>
-            </div>
-        </aside>
-       
+                    sidebarLeft.scrollTop = initialPosition;
+                }
+            }
+        </script>
+    </div>
+</aside>
+

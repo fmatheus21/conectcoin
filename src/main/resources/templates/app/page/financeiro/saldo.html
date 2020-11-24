@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-coins"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>   
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover mb-0">
+                            <tbody>
+                                <tr>
+                                    <th>Total de Ganhos:</th>
+                                    <td class="text-success">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Pago:</th>
+                                    <td class="text-danger">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Pago em Pedidos:</th>
+                                    <td class="text-danger">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Saldo Corrente:</th>
+                                    <td class="text-primary">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Saldo Bloqueado:</th>
+                                    <td class="text-warning">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Outros Lançamentos:</th>
+                                    <td class="text-info">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <th>Disponível para Saque:</th>
+                                    <td class="text-success">R$ 0,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                financeiro();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card card-body bg-success mb-4">
+                    <div class="media" style="margin: 0;">
+                        <div class="media-left media-middle">
+                            <i class="fa fa-arrow-left fa-3x"></i>
+                        </div>
+                        <div class="media-body text-right">
+                            <h3 class="no-margin">
+                                0,0
+                            </h3>
+                            <span class="text-uppercase">Acumulado na esquerda</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card card-body bg-danger mb-4">
+                    <div class="media" style="margin: 0;">
+                        <div class="media-body">
+                            <h3 class="no-margin">
+                                0,0
+                            </h3>
+                            <span class="text-uppercase">Acumulado na Direita</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="fa fa-arrow-right fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="alert alert-info">
+		<h4>Heey, fique atento!</h4>
+		<p>Ao atingir uma nova graduação em nosso plano de carreira, o mesmo é atualizado em sua conta ao inicio do próximo dia.</p>
+	</div>
+
+
+
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                carreira();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

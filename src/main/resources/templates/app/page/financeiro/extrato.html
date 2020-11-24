@@ -20,45 +20,45 @@
 
 
                 <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-
+                    
                     <!-- Table Filter -->
                     <div th:replace="app/template/table-filter :: fragment"></div>
                     <!-- Table Filter -->
-
+                    
                     <div class="table-responsive">                        
                         <table class="table data-paginate table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Categoria</th>
-                                    <th>Criada em</th>
+                                    <th>Data</th>
+                                    <th>descrição</th>
+                                    <th>Tipo</th>
                                     <th>Valor</th>
-                                    <th>Pontos</th>
                                     <th>Status</th>
                                     <th>Ação</th>
                                 </tr></thead>
                             <tbody>
-                                <tr th:each="pedido : ${modelPedidos}">
+                                <tr th:each="extrato : ${modelExtratos}">
                                     <td>
-                                        <span class="badge badge-indigo">[[${pedido.id}]]</span>
+                                        <span>[[${extrato.id}]]</span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-info">[[${pedido.categoria}]]</span>
+                                        <span>[[${extrato.data}]]</span>
                                     </td>
                                     <td>
-                                        [[${pedido.dataSolicitacao}]]
+                                        [[${extrato.descricao}]]
                                     </td>
                                     <td>
-                                        [[${pedido.valor}]]
+                                        [[${extrato.tipo}]]
                                     </td>
                                     <td>
-                                        [[${pedido.pontos}]]
+                                        [[${extrato.valor}]]
                                     </td>
                                     <td>
-                                        <span class="badge badge-danger">[[${pedido.status}]]</span>
+                                        <span class="badge badge-danger">[[${extrato.status}]]</span>
                                     </td>
                                     <td>
-                                        <a th:href="@{/app/pedidos/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <a th:href="@{/app/financeiro/extrato/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
                                             <i class="fa fa-eye fa-fw"></i>
                                         </a>
                                     </td>
@@ -69,10 +69,10 @@
                         </table>   
                     </div>
 
-                    <!-- Table Paginator -->
+                   <!-- Table Paginator -->
                     <div th:replace="app/template/table-paginator :: fragment"></div>
-                    <!-- Table Paginator --> 
-
+                    <!-- Table Paginator -->
+                    
                 </div>
 
 
@@ -96,7 +96,7 @@
 
         <script type="text/javascript">
             window.addEventListener("load", function (event) {
-                pedido();
+                financeiro();
             });
         </script>
 

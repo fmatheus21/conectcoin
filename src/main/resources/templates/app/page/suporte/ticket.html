@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-list"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>   
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+                <form method="POST" action="#" accept-charset="UTF-8" class="form-bordered" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group col-md-offset-2">
+                            <label for="department_id">Departamento</label> <span class="required">*</span>
+                            <select class="form-control custom-select">                                
+                                <option value="1">Financeiro</option>
+                                <option value="2">Suporte</option>
+                                <option value="3">Dados Cadastrais</option>
+                                <option value="4">Perdas Indevidas em Minha Conta</option>                               
+                            </select>                            
+                        </div>
+                        <div class="form-group col-md-offset-2">
+                            <label for="subject">Assunto</label> <span class="required">*</span>
+                            <input class="form-control" name="subject" type="text" id="subject">
+                        </div>
+                        <div class="form-group col-md-offset-2">
+                            <label for="description">Descreva o seu problema</label> <span class="required">*</span>
+                            <textarea class="form-control" name="description" cols="50" rows="10" id="description"></textarea>
+                        </div>
+                        <div class="form-group col-md-offset-2">
+                            <label for="file[]">Anexar arquivos</label>
+                            <input class="form-control" multiple="" name="file[]" type="file" id="file[]">
+                            <span class="help-block">
+                                <b>Tamanho máximo permitido: 3MB.</b>
+                            </span>
+                        </div>			
+                    </div>
+                    <div class="card-footer text-right">
+                        <a th:href="@{/app/suporte/tickets}" class="btn btn-danger">Cancelar</a>
+                        <input type="submit" class="btn btn-success" value="Enviar">
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                suporte();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

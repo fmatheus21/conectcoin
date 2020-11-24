@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <div class="text-right mb-3">
+            <a th:href="@{/app/suporte/tickets/create}" class="btn btn-sm btn-success">
+                <i class="fa fa-plus"></i>
+                Novo Ticket
+            </a>
+        </div>
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-list"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>   
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+                <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                    <!-- Table Filter -->
+                    <div th:replace="app/template/table-filter :: fragment"></div>
+                    <!-- Table Filter -->
+
+                    <div class="table-responsive">                        
+                        <table class="table data-paginate table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th># ID</th>
+                                    <th>Assunto</th>
+                                    <th>Departamento</th>                                    
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr></thead>
+                            <tbody>
+                                <tbody>
+                                <tr class="odd">
+                                    <td colspan="6" class="dataTables_empty" valign="top">Nenhum registro encontrado</td>
+                                </tr>
+                            </tbody>                          
+
+                            </tbody>
+
+                        </table>   
+                    </div>
+
+                    <!-- Table Paginator -->
+                    <div th:replace="app/template/table-paginator :: fragment"></div>
+                    <!-- Table Paginator --> 
+
+                </div>
+
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                suporte();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

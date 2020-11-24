@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <div class="text-right mb-3">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-contribution">
+                <i class="fa fa-plus"></i>
+                Nova Contribuição
+            </button>
+        </div>
+
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-wallet"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>   
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <div  class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                    <!-- Table Filter -->
+                    <div th:replace="app/template/table-filter :: fragment"></div>
+                    <!-- Table Filter -->
+
+                    <div class="table-responsive">
+                        <table class="table data-paginate table-striped table-hover dataTable no-footer">
+                            <thead>
+                                <tr role="row">
+                                    <th>Data</th>
+                                    <th>Valor Contribuido</th>
+                                    <th>Compras de Produtos</th>
+                                    <th>Teto Máximo</th>
+                                    <th>Progresso</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd">
+                                    <td colspan="6" class="dataTables_empty" valign="top">Nenhum registro encontrado</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Table Paginator -->
+                    <div th:replace="app/template/table-paginator :: fragment"></div>
+                    <!-- Table Paginator -->
+                    
+                </div>
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+        <!-- Modal -->        
+        <div id="modal-contribution" class="modal fade show" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Realizar Contribuição</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form id="f-investment" action="#" onsubmit="return false;">                       
+                        <div class="modal-body">
+                            <div class="alert alert-danger">
+                                <h4 class="mt-0"><i class="fa fa-exclamation-triangle"></i> Atenção!!</h4>
+                                <p class="m-0">A contribuição <strong>NÃO É COMPRA</strong> de Produtos.</p>
+                                <p class="m-0 font-weight-bold">Lembre-se que após a compra ter o pagamento aprovado, não será mais possível ter qualquer tipo de estorno.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="value">Valor da Contribuição:</label>
+                                <input type="text" name="value" id="value" class="form-control money-mask" required="">
+                            </div>
+                            <div class="form-group">
+                                <p>Regras para realizar a sua Contribuição:</p>
+                                <ul class="clist clist-angle">
+                                    <li>O valor mínimo de contribuição é de <b>R$ 20,00</b>.</li>
+                                    <li>O valor máximo de contribuição é de <b>R$ 100,00</b>.</li>
+                                    <li>Você poderá adquirir até <b>100 vezes</b> o valor da sua contribuição em Produtos.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Contribuir</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+
+
+        <script th:src="@{/app/assets/theme/template-vendor/jquery/jquery.js}"></script>
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                contribuicao();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

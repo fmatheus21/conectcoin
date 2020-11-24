@@ -10,7 +10,7 @@
 
             <header class="card-header">
                 <h2 class="card-title">
-                    <i class="fa fa-list"></i>
+                    <i class="fa fa-users"></i>
                     [[${headerTitle}]]
                 </h2>
             </header>
@@ -29,36 +29,33 @@
                         <table class="table data-paginate table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Categoria</th>
-                                    <th>Criada em</th>
-                                    <th>Valor</th>
-                                    <th>Pontos</th>
+                                    <th>ID #</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Telefone</th>                                   
                                     <th>Status</th>
                                     <th>Ação</th>
-                                </tr></thead>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr th:each="pedido : ${modelPedidos}">
+                                <tr th:each="indicado : ${modelIndicados}">
                                     <td>
-                                        <span class="badge badge-indigo">[[${pedido.id}]]</span>
+                                        <span>[[${indicado.id}]]</span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-info">[[${pedido.categoria}]]</span>
+                                        <span>[[${indicado.nome}]]</span>
                                     </td>
                                     <td>
-                                        [[${pedido.dataSolicitacao}]]
+                                        [[${indicado.email}]]
                                     </td>
                                     <td>
-                                        [[${pedido.valor}]]
+                                        [[${indicado.telefone}]]
+                                    </td>                                    
+                                    <td>
+                                        <span class="badge badge-danger">[[${indicado.status}]]</span>
                                     </td>
                                     <td>
-                                        [[${pedido.pontos}]]
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">[[${pedido.status}]]</span>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{/app/pedidos/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
+                                        <a th:href="@{/app/redes/indicados/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
                                             <i class="fa fa-eye fa-fw"></i>
                                         </a>
                                     </td>
@@ -71,7 +68,7 @@
 
                     <!-- Table Paginator -->
                     <div th:replace="app/template/table-paginator :: fragment"></div>
-                    <!-- Table Paginator --> 
+                    <!-- Table Paginator -->
 
                 </div>
 
@@ -96,7 +93,7 @@
 
         <script type="text/javascript">
             window.addEventListener("load", function (event) {
-                pedido();
+                rede();
             });
         </script>
 

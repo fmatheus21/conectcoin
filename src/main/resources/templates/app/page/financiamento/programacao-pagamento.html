@@ -29,39 +29,30 @@
                         <table class="table data-paginate table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Categoria</th>
-                                    <th>Criada em</th>
-                                    <th>Valor</th>
-                                    <th>Pontos</th>
-                                    <th>Status</th>
-                                    <th>Ação</th>
-                                </tr></thead>
+                                    <th>#ID</th>
+                                    <th>Nome</th>
+                                    <th>Login</th>
+                                    <th>Data Aceite</th>                                    
+                                    <th>Status</th>                                    
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr th:each="pedido : ${modelPedidos}">
+                                <tr th:each="pagamento : ${modelPagamentos}">
                                     <td>
-                                        <span class="badge badge-indigo">[[${pedido.id}]]</span>
+                                        <span>[[${pagamento.id}]]</span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-info">[[${pedido.categoria}]]</span>
+                                        <span >[[${pagamento.nome}]]</span>
                                     </td>
                                     <td>
-                                        [[${pedido.dataSolicitacao}]]
+                                        [[${pagamento.login}]]
                                     </td>
                                     <td>
-                                        [[${pedido.valor}]]
-                                    </td>
+                                        [[${pagamento.dataAceite}]]
+                                    </td>                                   
                                     <td>
-                                        [[${pedido.pontos}]]
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">[[${pedido.status}]]</span>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{/app/pedidos/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
-                                            <i class="fa fa-eye fa-fw"></i>
-                                        </a>
-                                    </td>
+                                        <span class="badge badge-danger">[[${pagamento.status}]]</span>
+                                    </td>                                    
                                 </tr>                           
 
                             </tbody>

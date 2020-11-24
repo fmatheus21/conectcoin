@@ -5,14 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller 
-@RequestMapping("dashboard")
+@Controller
+@RequestMapping("/app/dashboard")
 public class DashboardResource {
 
-
     @GetMapping
-    public String openDashboard(Model model) {      
-         model.addAttribute("pageTitle", "Dashboard");
+    public String openDashboard(Model model) {
+        model.addAttribute("pageTitle", "Dashboard");
         model.addAttribute("headerTitle", "Dashboard");
 
         return "app/page/dashboard";

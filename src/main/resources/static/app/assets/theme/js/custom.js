@@ -1,116 +1,116 @@
 /* Add here all your JS customizations */
-(function($) {
+(function ($) {
 
-	'use strict';
+    'use strict';
 
-	var datatableDefaultInit = function() {
+    var datatableDefaultInit = function () {
 
-		$('table.data').dataTable({
-			dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
-			paging: false
-		});
+        $('table.data').dataTable({
+            dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
+            paging: false
+        });
 
-	};
+    };
 
-	var datatableDefaultPaginateInit = function() {
-		
-		$('table.data-paginate').dataTable({
-			dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
-			paging: true,
-			"aaSorting": []
-		});
+    var datatableDefaultPaginateInit = function () {
 
-	};
+        $('table.data-paginate').dataTable({
+            dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
+            paging: true,
+            "aaSorting": []
+        });
 
-	$(function() {
-		datatableDefaultInit();
-		datatableDefaultPaginateInit();
-	});
+    };
 
-	$('a.delete').on('click', function(){
-		var url = $(this).attr('data-url');
-		$('#deleteModal .modal-footer a.delete-url').attr('href', url);
-	});
+    $(function () {
+        /*datatableDefaultInit();
+        datatableDefaultPaginateInit();*/
+    });
 
-	$('button[type="submit"],input[type="submit"],.btn.loading').on('click', function() {
-		var $this = $(this);
-		var loadingText = '<i class="fa fa-circle-notch fa-spin"></i> carregando...';
-		if ($(this).html() !== loadingText) {
-			$this.data('original-text', $(this).html());
-			$this.html(loadingText);
-		}
-		setTimeout(function() {
-			$this.html($this.data('original-text'));
-		}, 5000);
-	});
+    $('a.delete').on('click', function () {
+        var url = $(this).attr('data-url');
+        $('#deleteModal .modal-footer a.delete-url').attr('href', url);
+    });
 
-	$("[data-sort-source]").each(function() {
+    $('button[type="submit"],input[type="submit"],.btn.loading').on('click', function () {
+        var $this = $(this);
+        var loadingText = '<i class="fa fa-circle-notch fa-spin"></i> carregando...';
+        if ($(this).html() !== loadingText) {
+            $this.data('original-text', $(this).html());
+            $this.html(loadingText);
+        }
+        setTimeout(function () {
+            $this.html($this.data('original-text'));
+        }, 5000);
+    });
 
-		var source = $(this);
-		var destination = $("[data-sort-destination][data-sort-id=" + $(this).attr("data-sort-id") + "]");
+    $("[data-sort-source]").each(function () {
 
-		if(destination.get(0)) {
+        var source = $(this);
+        var destination = $("[data-sort-destination][data-sort-id=" + $(this).attr("data-sort-id") + "]");
 
-			$(window).on('load', function() {
+        if (destination.get(0)) {
 
-				destination.isotope({
-					itemSelector: ".isotope-item",
-					layoutMode: 'fitRows'
-				});
+            $(window).on('load', function () {
 
-				$(window).on('sidebar-left-toggle inner-menu-toggle', function() {
-					destination.isotope();
-				});
+                destination.isotope({
+                    itemSelector: ".isotope-item",
+                    layoutMode: 'fitRows'
+                });
 
-				source.find("a[data-option-value]").click(function(e) {
+                $(window).on('sidebar-left-toggle inner-menu-toggle', function () {
+                    destination.isotope();
+                });
 
-					e.preventDefault();
+                source.find("a[data-option-value]").click(function (e) {
 
-					var $this = $(this),
-						filter = $this.attr("data-option-value");
+                    e.preventDefault();
 
-					source.find(".active").removeClass("active");
-					$this.closest("li").addClass("active");
+                    var $this = $(this),
+                            filter = $this.attr("data-option-value");
 
-					destination.isotope({
-						filter: filter
-					});
+                    source.find(".active").removeClass("active");
+                    $this.closest("li").addClass("active");
 
-					if(window.location.hash != "" || filter.replace(".","") != "*") {
-						window.location.hash = filter.replace(".","");
-					}
+                    destination.isotope({
+                        filter: filter
+                    });
 
-					return false;
+                    if (window.location.hash != "" || filter.replace(".", "") != "*") {
+                        window.location.hash = filter.replace(".", "");
+                    }
 
-				});
+                    return false;
 
-				$(window).bind("hashchange", function(e) {
+                });
 
-					var hashFilter = "." + location.hash.replace("#",""),
-						hash = (hashFilter == "." || hashFilter == ".*" ? "*" : hashFilter);
+                $(window).bind("hashchange", function (e) {
 
-					source.find(".active").removeClass("active");
-					source.find("[data-option-value='" + hash + "']").closest("li").addClass("active");
+                    var hashFilter = "." + location.hash.replace("#", ""),
+                            hash = (hashFilter == "." || hashFilter == ".*" ? "*" : hashFilter);
 
-					destination.isotope({
-						filter: hash
-					});
+                    source.find(".active").removeClass("active");
+                    source.find("[data-option-value='" + hash + "']").closest("li").addClass("active");
 
-				});
+                    destination.isotope({
+                        filter: hash
+                    });
 
-				var hashFilter = "." + (location.hash.replace("#","") || "*");
-				var initFilterEl = source.find("a[data-option-value='" + hashFilter + "']");
+                });
 
-				if(initFilterEl.get(0)) {
-					source.find("[data-option-value='" + hashFilter + "']").click();
-				} else {
-					source.find(".active a").click();
-				}
+                var hashFilter = "." + (location.hash.replace("#", "") || "*");
+                var initFilterEl = source.find("a[data-option-value='" + hashFilter + "']");
 
-			});
+                if (initFilterEl.get(0)) {
+                    source.find("[data-option-value='" + hashFilter + "']").click();
+                } else {
+                    source.find(".active a").click();
+                }
 
-		}
+            });
 
-	});
+        }
+
+    });
 
 }).apply(this, [jQuery]);

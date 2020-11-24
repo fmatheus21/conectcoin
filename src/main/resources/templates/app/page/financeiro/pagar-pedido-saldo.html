@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <div class="row">
+            <div class="col-xl-4">
+                <section class="card mb-4">
+                    <div class="card-body bg-success">
+                        <div class="media-left media-middle">
+                            <i class="fas fa-coins fa-5x"></i>
+                        </div>
+                        <div class="media-body text-right">
+                            <h3 class="no-margin">
+                                R$ 0,00
+                            </h3>
+                            <span class="text-uppercase">Saldo Disponivel</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <!-- Card -->
+        <div class="card card-primary mt-3">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-coins"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>   
+
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+
+                <form id="f-eWallet-special" action="#" onsubmit="return false;" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="invoice_id">Digite o Nº do Pedido:</label>
+                            <div class="input-group date">
+                                <input type="text" name="invoice_id" id="invoice_id" class="form-control" value="" required="">
+                                <span class="input-group-append">
+                                    <button type="button" id="search-invoice" class="btn btn-primary">
+                                        <i class="fa fa-search fa-fw"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="total">Valor Total do Pedido + Taxa:</label>
+                                    <input type="text" id="total" class="form-control" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="username">Associado:</label>
+                                    <input type="text" id="username" class="form-control" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p>Ao continuar, você está ciente que:</p>
+                            <ul class="clist clist-angle">
+                                <li>É cobrada uma taxa de <b>8%</b> sobre o valor do pedido.</li>
+                                <li>O valor do pedido + valor da taxa será debitado do seu <b>Saldo</b>.</li>
+                                <li>A operação, após concluída, não poderá ser estornada.</li>
+                                <li>A <b>Opus Investimentos</b> não se responsabiliza por acordos entre os associados.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" id="pay-invoice" class="btn btn-success" value="Efetuar Pagamento" disabled="">
+                    </div>
+                </form>
+
+
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                financeiro();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>

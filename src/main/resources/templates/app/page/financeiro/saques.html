@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <div class="row">
+            <div class="col-xl-4">
+                <section class="card mb-4">
+                    <div class="card-body bg-primary">
+                        <div class="media-left media-middle">
+                            <i class="fas fa-coins fa-5x"></i>
+                        </div>
+                        <div class="media-body text-right">
+                            <h3 class="no-margin">
+                                R$ 0,00
+                            </h3>
+                            <span class="text-uppercase">Saldo Disponivel</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xl-4">
+                <section class="card mb-4">
+                    <div class="card-body bg-success">
+                        <div class="media-left media-middle">
+                            <i class="fas fa-check fa-5x"></i>
+                        </div>
+                        <div class="media-body text-right">
+                            <h3 class="no-margin">
+                                R$ 0,00
+                            </h3>
+                            <span class="text-uppercase">Saques Realizados</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xl-4">
+                <section class="card mb-4">
+                    <div class="card-body bg-warning">
+                        <div class="media-left media-middle">
+                            <i class="fas fa-cloud-download-alt fa-5x"></i>
+                        </div>
+                        <div class="media-body text-right">
+                            <h3 class="no-margin">
+                                R$ 0,00
+                            </h3>
+                            <span class="text-uppercase">Saques Pendentes</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <div class="text-right" style="margin-bottom: 5px;">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_withdrawal">
+                <i class="fa fa-plus"></i>
+                Solicitar
+            </button>
+        </div>
+
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-coins"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+
+                <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                    <!-- Table Filter -->
+                    <div th:replace="app/template/table-filter :: fragment"></div>
+                    <!-- Table Filter -->
+
+                    <div class="table-responsive">                        
+                        <table class="table data-paginate table-striped table-hover dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th class="sorting">#ID </th>
+                                    <th class="sorting">Data Saque</th>
+                                    <th class="sorting">Meio de Recebimento</th>
+                                    <th class="sorting">Valor Sacado</th>
+                                    <th class="sorting">Valor Recebido</th>
+                                    <th class="sorting">Status</th>
+                                    <th class="sorting">Comentário</th>
+                                    <th class="sorting">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="saque : ${modelSaques}">
+                                    <td>
+                                        <span>[[${saque.id}]]</span>
+                                    </td>
+                                    <td>
+                                        <span>[[${saque.dataSaque}]]</span>
+                                    </td>
+                                    <td>
+                                        [[${saque.meioRecebimento}]]
+                                    </td>
+                                    <td>
+                                        [[${saque.valorSacado}]]
+                                    </td>
+                                    <td>
+                                        [[${saque.valorRecebido}]]
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-danger">[[${saque.status}]]</span>
+                                    </td>
+                                    <td>
+                                        [[${saque.comentario}]]
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/app/financeiro/saque/1}" data-toggle="tooltip" data-placement="top" title="Visualizar" class="btn btn-xs btn-primary">
+                                            <i class="fa fa-eye fa-fw"></i>
+                                        </a>
+                                    </td>
+                                </tr>                           
+
+                            </tbody>
+
+                        </table>   
+                    </div>
+
+                    <!-- Table Paginator -->
+                    <div th:replace="app/template/table-paginator :: fragment"></div>
+                    <!-- Table Paginator -->
+
+                </div>
+
+
+            </div>
+            <!-- Card Body -->
+
+        </div>
+        <!-- Card -->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade show" id="modal_withdrawal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Solicitar Saque</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form id="f-eWallet-payout" action="#" onsubmit="return false;" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="to" class="control-label">Meio de Recebimento:</label>
+                                <select id="to" class="form-control custom-select" required="required">
+                                    <option value="" selected>Selecione a forma que deseja receber</option>
+                                    <option value="bitcoin">Carteira Bitcoin (Favor cadastrar sua carteira bitcoin)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="value">Valor do Saque:</label>
+                                <input type="text" name="value" id="value" class="form-control money-mask" required="">
+                                <span class="help-block">
+                                    <b>Saldo disponível:</b> R$ 0,00
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <p>Ao solicitar saque, você está ciente que:</p>
+                                <ul class="clist clist-angle">
+                                    <li>Os saques são permitidos de <b>segunda a sexta</b> das <b>8h</b> às <b>18h</b>.</li>
+                                    <li>O valor de saque minimo é de <b>R$ 50,00</b>.</li>
+                                    <li>Será cobrada uma taxa de <b>8.0%</b> sob o valor do saque.</li>
+                                    <li>O pagamento é enviado em até <b>3 dias úteis</b> após a solicitação.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success" value="Solicitar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+
+
+        <script th:src="@{/app/assets/theme/template-vendor/jquery/jquery.js}"></script>        
+        <script th:src="@{/app/assets/theme/template-vendor/bootstrap/js/bootstrap.js}"></script>      
+
+
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+
+
+        <script type="text/javascript">
+            window.addEventListener("load", function (event) {
+                financeiro();
+            });
+        </script>
+
+
+    </div>
+    <!-- Fragment -->
+</html>
