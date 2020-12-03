@@ -21,20 +21,23 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
-@Table(name = "pagamento_menor_equipe", catalog = "conectcoin", schema = "", uniqueConstraints = {
+@Table(name = "pagamento_equipe", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_patrocinador"}),
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PagamentoMenorEquipeEntity.findAll", query = "SELECT p FROM PagamentoMenorEquipeEntity p"),
-    @NamedQuery(name = "PagamentoMenorEquipeEntity.findById", query = "SELECT p FROM PagamentoMenorEquipeEntity p WHERE p.id = :id"),
-    @NamedQuery(name = "PagamentoMenorEquipeEntity.findByDataPagamento", query = "SELECT p FROM PagamentoMenorEquipeEntity p WHERE p.dataPagamento = :dataPagamento")})
-public class PagamentoMenorEquipeEntity implements Serializable {
+    @NamedQuery(name = "PagamentoEquipeEntity.findAll", query = "SELECT p FROM PagamentoEquipeEntity p"),
+    @NamedQuery(name = "PagamentoEquipeEntity.findById", query = "SELECT p FROM PagamentoEquipeEntity p WHERE p.id = :id"),
+    @NamedQuery(name = "PagamentoEquipeEntity.findByDataPagamento", query = "SELECT p FROM PagamentoEquipeEntity p WHERE p.dataPagamento = :dataPagamento")})
+public class PagamentoEquipeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,21 +46,22 @@ public class PagamentoMenorEquipeEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_pagamento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataPagamento;
     @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
     @OneToOne(optional = false)
-    private InvestidorEntity idPatrocinador;
+    private ClienteEntity idPatrocinador;
 
-    public PagamentoMenorEquipeEntity() {
+    public PagamentoEquipeEntity() {
     }
 
-    public PagamentoMenorEquipeEntity(Integer id) {
+    public PagamentoEquipeEntity(Integer id) {
         this.id = id;
     }
 
-    public PagamentoMenorEquipeEntity(Integer id, Date dataPagamento) {
+    public PagamentoEquipeEntity(Integer id, Date dataPagamento) {
         this.id = id;
         this.dataPagamento = dataPagamento;
     }
@@ -78,11 +82,11 @@ public class PagamentoMenorEquipeEntity implements Serializable {
         this.dataPagamento = dataPagamento;
     }
 
-    public InvestidorEntity getIdPatrocinador() {
+    public ClienteEntity getIdPatrocinador() {
         return idPatrocinador;
     }
 
-    public void setIdPatrocinador(InvestidorEntity idPatrocinador) {
+    public void setIdPatrocinador(ClienteEntity idPatrocinador) {
         this.idPatrocinador = idPatrocinador;
     }
 
@@ -96,10 +100,10 @@ public class PagamentoMenorEquipeEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PagamentoMenorEquipeEntity)) {
+        if (!(object instanceof PagamentoEquipeEntity)) {
             return false;
         }
-        PagamentoMenorEquipeEntity other = (PagamentoMenorEquipeEntity) object;
+        PagamentoEquipeEntity other = (PagamentoEquipeEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +112,7 @@ public class PagamentoMenorEquipeEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.firecode.app.model.entity.PagamentoMenorEquipeEntity[ id=" + id + " ]";
+        return "com.firecode.app.model.entity.PagamentoEquipeEntity[ id=" + id + " ]";
     }
     
 }

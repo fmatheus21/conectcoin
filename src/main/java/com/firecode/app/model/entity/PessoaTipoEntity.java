@@ -19,15 +19,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "pessoa_tipo", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"}),
     @UniqueConstraint(columnNames = {"nome"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PessoaTipoEntity.findAll", query = "SELECT p FROM PessoaTipoEntity p"),
     @NamedQuery(name = "PessoaTipoEntity.findById", query = "SELECT p FROM PessoaTipoEntity p WHERE p.id = :id"),
@@ -41,6 +46,8 @@ public class PessoaTipoEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "nome", nullable = false, length = 20)
     private String nome;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipo")
@@ -74,6 +81,7 @@ public class PessoaTipoEntity implements Serializable {
         this.nome = nome;
     }
 
+    @XmlTransient
     public Collection<PessoaEntity> getPessoaEntityCollection() {
         return pessoaEntityCollection;
     }

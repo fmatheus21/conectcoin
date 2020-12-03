@@ -25,15 +25,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "investimento_pagamento", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_investimento"}),
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "InvestimentoPagamentoEntity.findAll", query = "SELECT i FROM InvestimentoPagamentoEntity i"),
     @NamedQuery(name = "InvestimentoPagamentoEntity.findById", query = "SELECT i FROM InvestimentoPagamentoEntity i WHERE i.id = :id"),
@@ -48,19 +52,21 @@ public class InvestimentoPagamentoEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_pagamento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataPagamento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "pago", nullable = false)
     private boolean pago;
     @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private InvestidorEntity idPatrocinador;
+    private ClienteEntity idPatrocinador;
     @JoinColumn(name = "id_investimento", referencedColumnName = "id", nullable = false)
     @OneToOne(optional = false)
-    private InvestimentoEntity idInvestimento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInvestimentoPagamento")
+    private InvestimentoPedidoEntity idInvestimento;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPagamento")
     private Collection<PagamentoMensalEntity> pagamentoMensalEntityCollection;
 
     public InvestimentoPagamentoEntity() {
@@ -100,22 +106,23 @@ public class InvestimentoPagamentoEntity implements Serializable {
         this.pago = pago;
     }
 
-    public InvestidorEntity getIdPatrocinador() {
+    public ClienteEntity getIdPatrocinador() {
         return idPatrocinador;
     }
 
-    public void setIdPatrocinador(InvestidorEntity idPatrocinador) {
+    public void setIdPatrocinador(ClienteEntity idPatrocinador) {
         this.idPatrocinador = idPatrocinador;
     }
 
-    public InvestimentoEntity getIdInvestimento() {
+    public InvestimentoPedidoEntity getIdInvestimento() {
         return idInvestimento;
     }
 
-    public void setIdInvestimento(InvestimentoEntity idInvestimento) {
+    public void setIdInvestimento(InvestimentoPedidoEntity idInvestimento) {
         this.idInvestimento = idInvestimento;
     }
 
+    @XmlTransient
     public Collection<PagamentoMensalEntity> getPagamentoMensalEntityCollection() {
         return pagamentoMensalEntityCollection;
     }

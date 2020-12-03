@@ -1,7 +1,7 @@
 <header th:fragment="fragment" class="header">
         <div class="logo-container">
             <a href="https://opusinvestimentos.com/panel" class="logo">
-                <img th:src="@{/app/assets/dist/img/logo.png}" height="40" alt="Opus Investimentos" />
+                <img th:src="@{/app/assets/upload/logo/logo.png}" height="40" alt="Opus Investimentos" />
             </a>
             <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
@@ -18,8 +18,8 @@
                         <img th:src="@{/app/assets/dist/img/user_male.png}" class="rounded-circle" />
                     </figure>
                     <div class="profile-info">
-                        <span class="name">Fagner Santos Silva</span>
-                        <span class="role">fagner17</span>
+                        <span class="name">[[${loggedUser.nomeCompleto}]]</span>
+                        <span class="role">[[${loggedUser.userName}]]</span>
                     </div>
 
                     <i class="fa custom-caret"></i>
@@ -29,22 +29,22 @@
                     <ul class="list-unstyled mb-2">
                         <li class="divider"></li>
                         <li>
-                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/profile">
+                            <a class="menuitem" tabindex="-1" th:href="@{${perfil}}">
                                 <i class="fa fa-user"></i> Meus dados
                             </a>
                         </li>
                         <li>
-                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/googleAuthenticator">
+                            <a class="menuitem" tabindex="-1" th:href="@{${google}}">
                                 <i class="fa fa-lock"></i> Google Authenticator
                             </a>
                         </li>
                         <li>
-                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/settings/password">
+                            <a class="menuitem" tabindex="-1" th:href="@{${senha}}">
                                 <i class="fa fa-lock"></i> Alterar senha
                             </a>
                         </li>
                         <li>
-                            <a class="menuitem" tabindex="-1" href="https://opusinvestimentos.com/panel/logout">
+                            <a class="menuitem" tabindex="-1" th:href="@{${sair}}">
                                 <i class="fa fa-power-off"></i> Logout
                             </a>
                         </li>

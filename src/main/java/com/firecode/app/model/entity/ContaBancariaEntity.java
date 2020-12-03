@@ -13,27 +13,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "conta_bancaria", catalog = "conectcoin", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id"}),
-    @UniqueConstraint(columnNames = {"id_investidor"})})
+    @UniqueConstraint(columnNames = {"id_cliente"}),
+    @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ContaBancariaEntity.findAll", query = "SELECT c FROM ContaBancariaEntity c"),
     @NamedQuery(name = "ContaBancariaEntity.findById", query = "SELECT c FROM ContaBancariaEntity c WHERE c.id = :id"),
-    @NamedQuery(name = "ContaBancariaEntity.findByBanco", query = "SELECT c FROM ContaBancariaEntity c WHERE c.banco = :banco"),
     @NamedQuery(name = "ContaBancariaEntity.findByAgencia", query = "SELECT c FROM ContaBancariaEntity c WHERE c.agencia = :agencia"),
-    @NamedQuery(name = "ContaBancariaEntity.findByNumeroConta", query = "SELECT c FROM ContaBancariaEntity c WHERE c.numeroConta = :numeroConta"),
-    @NamedQuery(name = "ContaBancariaEntity.findByTipoConta", query = "SELECT c FROM ContaBancariaEntity c WHERE c.tipoConta = :tipoConta")})
+    @NamedQuery(name = "ContaBancariaEntity.findByNumero", query = "SELECT c FROM ContaBancariaEntity c WHERE c.numero = :numero")})
 public class ContaBancariaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,23 +45,37 @@ public class ContaBancariaEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "banco", length = 50)
-    private String banco;
-    @Column(name = "agencia", length = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "agencia", nullable = false, length = 15)
     private String agencia;
-    @Column(name = "numero_conta", length = 20)
-    private String numeroConta;
-    @Column(name = "tipo_conta", length = 45)
-    private String tipoConta;
-    @JoinColumn(name = "id_investidor", referencedColumnName = "id", nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "numero", nullable = false, length = 15)
+    private String numero;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private BancoEntity idBanco;
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
     @OneToOne(optional = false)
-    private InvestidorEntity idInvestidor;
+    private ClienteEntity idCliente;
+    @JoinColumn(name = "id_tipo", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private ContaBancariaTipoEntity idTipo;
 
     public ContaBancariaEntity() {
     }
 
     public ContaBancariaEntity(Integer id) {
         this.id = id;
+    }
+
+    public ContaBancariaEntity(Integer id, String agencia, String numero) {
+        this.id = id;
+        this.agencia = agencia;
+        this.numero = numero;
     }
 
     public Integer getId() {
@@ -69,14 +86,6 @@ public class ContaBancariaEntity implements Serializable {
         this.id = id;
     }
 
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-
     public String getAgencia() {
         return agencia;
     }
@@ -85,28 +94,36 @@ public class ContaBancariaEntity implements Serializable {
         this.agencia = agencia;
     }
 
-    public String getNumeroConta() {
-        return numeroConta;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroConta(String numeroConta) {
-        this.numeroConta = numeroConta;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getTipoConta() {
-        return tipoConta;
+    public BancoEntity getIdBanco() {
+        return idBanco;
     }
 
-    public void setTipoConta(String tipoConta) {
-        this.tipoConta = tipoConta;
+    public void setIdBanco(BancoEntity idBanco) {
+        this.idBanco = idBanco;
     }
 
-    public InvestidorEntity getIdInvestidor() {
-        return idInvestidor;
+    public ClienteEntity getIdCliente() {
+        return idCliente;
     }
 
-    public void setIdInvestidor(InvestidorEntity idInvestidor) {
-        this.idInvestidor = idInvestidor;
+    public void setIdCliente(ClienteEntity idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public ContaBancariaTipoEntity getIdTipo() {
+        return idTipo;
+    }
+
+    public void setIdTipo(ContaBancariaTipoEntity idTipo) {
+        this.idTipo = idTipo;
     }
 
     @Override

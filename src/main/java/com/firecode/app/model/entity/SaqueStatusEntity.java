@@ -19,21 +19,26 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "saque_status", catalog = "conectcoin", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"color"}),
+    @UniqueConstraint(columnNames = {"cor"}),
     @UniqueConstraint(columnNames = {"id"}),
-    @UniqueConstraint(columnNames = {"status"})})
+    @UniqueConstraint(columnNames = {"nome"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SaqueStatusEntity.findAll", query = "SELECT s FROM SaqueStatusEntity s"),
     @NamedQuery(name = "SaqueStatusEntity.findById", query = "SELECT s FROM SaqueStatusEntity s WHERE s.id = :id"),
-    @NamedQuery(name = "SaqueStatusEntity.findByStatus", query = "SELECT s FROM SaqueStatusEntity s WHERE s.status = :status"),
-    @NamedQuery(name = "SaqueStatusEntity.findByColor", query = "SELECT s FROM SaqueStatusEntity s WHERE s.color = :color")})
+    @NamedQuery(name = "SaqueStatusEntity.findByNome", query = "SELECT s FROM SaqueStatusEntity s WHERE s.nome = :nome"),
+    @NamedQuery(name = "SaqueStatusEntity.findByCor", query = "SELECT s FROM SaqueStatusEntity s WHERE s.cor = :cor")})
 public class SaqueStatusEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,11 +48,15 @@ public class SaqueStatusEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "status", nullable = false, length = 45)
-    private String status;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nome", nullable = false, length = 45)
+    private String nome;
     @Basic(optional = false)
-    @Column(name = "color", nullable = false, length = 45)
-    private String color;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "cor", nullable = false, length = 45)
+    private String cor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
     private Collection<SaqueEntity> saqueEntityCollection;
 
@@ -58,10 +67,10 @@ public class SaqueStatusEntity implements Serializable {
         this.id = id;
     }
 
-    public SaqueStatusEntity(Integer id, String status, String color) {
+    public SaqueStatusEntity(Integer id, String nome, String cor) {
         this.id = id;
-        this.status = status;
-        this.color = color;
+        this.nome = nome;
+        this.cor = cor;
     }
 
     public Integer getId() {
@@ -72,22 +81,23 @@ public class SaqueStatusEntity implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getNome() {
+        return nome;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getColor() {
-        return color;
+    public String getCor() {
+        return cor;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
+    @XmlTransient
     public Collection<SaqueEntity> getSaqueEntityCollection() {
         return saqueEntityCollection;
     }

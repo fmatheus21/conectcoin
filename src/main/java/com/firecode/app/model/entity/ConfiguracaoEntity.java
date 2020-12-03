@@ -19,31 +19,34 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
-@Table(name = "investimento_config", catalog = "conectcoin", schema = "", uniqueConstraints = {
+@Table(name = "configuracao", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InvestimentoConfigEntity.findAll", query = "SELECT i FROM InvestimentoConfigEntity i"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findById", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.id = :id"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByValorMinimo", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.valorMinimo = :valorMinimo"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByValorMaximo", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.valorMaximo = :valorMaximo"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByValorPonto", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.valorPonto = :valorPonto"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByDiasExpiracaoPagamento", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.diasExpiracaoPagamento = :diasExpiracaoPagamento"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByPercentualInvestimento", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.percentualInvestimento = :percentualInvestimento"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByPercentualIndicacao", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.percentualIndicacao = :percentualIndicacao"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByPercentualEquipe", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.percentualEquipe = :percentualEquipe"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByDiasRemanejamentoEquipe", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.diasRemanejamentoEquipe = :diasRemanejamentoEquipe"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findBySaqueMinimo", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.saqueMinimo = :saqueMinimo"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByTaxaSobreSaque", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.taxaSobreSaque = :taxaSobreSaque"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByDiasPagamento", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.diasPagamento = :diasPagamento"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByMesesPagamento", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.mesesPagamento = :mesesPagamento"),
-    @NamedQuery(name = "InvestimentoConfigEntity.findByDiasExclusaoInativos", query = "SELECT i FROM InvestimentoConfigEntity i WHERE i.diasExclusaoInativos = :diasExclusaoInativos")})
-public class InvestimentoConfigEntity implements Serializable {
+    @NamedQuery(name = "ConfiguracaoEntity.findAll", query = "SELECT c FROM ConfiguracaoEntity c"),
+    @NamedQuery(name = "ConfiguracaoEntity.findById", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.id = :id"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByValorMinimo", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.valorMinimo = :valorMinimo"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByValorMaximo", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.valorMaximo = :valorMaximo"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByValorPonto", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.valorPonto = :valorPonto"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByDiasExpiracaoPagamento", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.diasExpiracaoPagamento = :diasExpiracaoPagamento"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByPercentualInvestimento", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.percentualInvestimento = :percentualInvestimento"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByPercentualIndicacao", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.percentualIndicacao = :percentualIndicacao"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByPercentualEquipe", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.percentualEquipe = :percentualEquipe"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByDiasRemmanejamentoEquipe", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.diasRemmanejamentoEquipe = :diasRemmanejamentoEquipe"),
+    @NamedQuery(name = "ConfiguracaoEntity.findBySaqueMinimo", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.saqueMinimo = :saqueMinimo"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByTaxaSobreSaque", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.taxaSobreSaque = :taxaSobreSaque"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByDiasPagamento", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.diasPagamento = :diasPagamento"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByMesesPagamento", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.mesesPagamento = :mesesPagamento"),
+    @NamedQuery(name = "ConfiguracaoEntity.findByDiasExclusaoInativos", query = "SELECT c FROM ConfiguracaoEntity c WHERE c.diasExclusaoInativos = :diasExclusaoInativos")})
+public class ConfiguracaoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,56 +56,69 @@ public class InvestimentoConfigEntity implements Serializable {
     private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_minimo", nullable = false, precision = 10, scale = 2)
     private BigDecimal valorMinimo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_maximo", nullable = false, precision = 10, scale = 2)
     private BigDecimal valorMaximo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_ponto", nullable = false, precision = 10, scale = 2)
     private BigDecimal valorPonto;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "dias_expiracao_pagamento", nullable = false)
     private int diasExpiracaoPagamento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "percentual_investimento", nullable = false, precision = 2, scale = 2)
     private BigDecimal percentualInvestimento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "percentual_indicacao", nullable = false, precision = 2, scale = 2)
     private BigDecimal percentualIndicacao;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "percentual_equipe", nullable = false, precision = 2, scale = 2)
     private BigDecimal percentualEquipe;
     @Basic(optional = false)
-    @Column(name = "dias_remanejamento_equipe", nullable = false)
-    private int diasRemanejamentoEquipe;
+    @NotNull
+    @Column(name = "dias_remmanejamento_equipe", nullable = false)
+    private int diasRemmanejamentoEquipe;
     @Basic(optional = false)
-    @Column(name = "saque_minimo", nullable = false, precision = 8, scale = 2)
+    @NotNull
+    @Column(name = "saque_minimo", nullable = false, precision = 10, scale = 2)
     private BigDecimal saqueMinimo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "taxa_sobre_saque", nullable = false, precision = 2, scale = 2)
     private BigDecimal taxaSobreSaque;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "dias_pagamento", nullable = false)
     private int diasPagamento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "meses_pagamento", nullable = false)
     private int mesesPagamento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "dias_exclusao_inativos", nullable = false)
     private int diasExclusaoInativos;
     @JoinColumn(name = "id_equipe", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private EquipeEntity idEquipe;
 
-    public InvestimentoConfigEntity() {
+    public ConfiguracaoEntity() {
     }
 
-    public InvestimentoConfigEntity(Integer id) {
+    public ConfiguracaoEntity(Integer id) {
         this.id = id;
     }
 
-    public InvestimentoConfigEntity(Integer id, BigDecimal valorMinimo, BigDecimal valorMaximo, BigDecimal valorPonto, int diasExpiracaoPagamento, BigDecimal percentualInvestimento, BigDecimal percentualIndicacao, BigDecimal percentualEquipe, int diasRemanejamentoEquipe, BigDecimal saqueMinimo, BigDecimal taxaSobreSaque, int diasPagamento, int mesesPagamento, int diasExclusaoInativos) {
+    public ConfiguracaoEntity(Integer id, BigDecimal valorMinimo, BigDecimal valorMaximo, BigDecimal valorPonto, int diasExpiracaoPagamento, BigDecimal percentualInvestimento, BigDecimal percentualIndicacao, BigDecimal percentualEquipe, int diasRemmanejamentoEquipe, BigDecimal saqueMinimo, BigDecimal taxaSobreSaque, int diasPagamento, int mesesPagamento, int diasExclusaoInativos) {
         this.id = id;
         this.valorMinimo = valorMinimo;
         this.valorMaximo = valorMaximo;
@@ -111,7 +127,7 @@ public class InvestimentoConfigEntity implements Serializable {
         this.percentualInvestimento = percentualInvestimento;
         this.percentualIndicacao = percentualIndicacao;
         this.percentualEquipe = percentualEquipe;
-        this.diasRemanejamentoEquipe = diasRemanejamentoEquipe;
+        this.diasRemmanejamentoEquipe = diasRemmanejamentoEquipe;
         this.saqueMinimo = saqueMinimo;
         this.taxaSobreSaque = taxaSobreSaque;
         this.diasPagamento = diasPagamento;
@@ -183,12 +199,12 @@ public class InvestimentoConfigEntity implements Serializable {
         this.percentualEquipe = percentualEquipe;
     }
 
-    public int getDiasRemanejamentoEquipe() {
-        return diasRemanejamentoEquipe;
+    public int getDiasRemmanejamentoEquipe() {
+        return diasRemmanejamentoEquipe;
     }
 
-    public void setDiasRemanejamentoEquipe(int diasRemanejamentoEquipe) {
-        this.diasRemanejamentoEquipe = diasRemanejamentoEquipe;
+    public void setDiasRemmanejamentoEquipe(int diasRemmanejamentoEquipe) {
+        this.diasRemmanejamentoEquipe = diasRemmanejamentoEquipe;
     }
 
     public BigDecimal getSaqueMinimo() {
@@ -249,10 +265,10 @@ public class InvestimentoConfigEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof InvestimentoConfigEntity)) {
+        if (!(object instanceof ConfiguracaoEntity)) {
             return false;
         }
-        InvestimentoConfigEntity other = (InvestimentoConfigEntity) object;
+        ConfiguracaoEntity other = (ConfiguracaoEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -261,7 +277,7 @@ public class InvestimentoConfigEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.firecode.app.model.entity.InvestimentoConfigEntity[ id=" + id + " ]";
+        return "com.firecode.app.model.entity.ConfiguracaoEntity[ id=" + id + " ]";
     }
     
 }

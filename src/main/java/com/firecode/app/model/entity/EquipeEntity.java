@@ -19,19 +19,25 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "equipe", catalog = "conectcoin", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id"})})
+    @UniqueConstraint(columnNames = {"id"}),
+    @UniqueConstraint(columnNames = {"nome"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EquipeEntity.findAll", query = "SELECT e FROM EquipeEntity e"),
     @NamedQuery(name = "EquipeEntity.findById", query = "SELECT e FROM EquipeEntity e WHERE e.id = :id"),
-    @NamedQuery(name = "EquipeEntity.findByEquipe", query = "SELECT e FROM EquipeEntity e WHERE e.equipe = :equipe"),
-    @NamedQuery(name = "EquipeEntity.findByColor", query = "SELECT e FROM EquipeEntity e WHERE e.color = :color")})
+    @NamedQuery(name = "EquipeEntity.findByNome", query = "SELECT e FROM EquipeEntity e WHERE e.nome = :nome"),
+    @NamedQuery(name = "EquipeEntity.findByCor", query = "SELECT e FROM EquipeEntity e WHERE e.cor = :cor")})
 public class EquipeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,15 +47,19 @@ public class EquipeEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "equipe", nullable = false, length = 10)
-    private String equipe;
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "nome", nullable = false, length = 10)
+    private String nome;
     @Basic(optional = false)
-    @Column(name = "color", nullable = false, length = 10)
-    private String color;
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "cor", nullable = false, length = 10)
+    private String cor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipe")
+    private Collection<ConfiguracaoEntity> configuracaoEntityCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipe")
     private Collection<IndicadoEntity> indicadoEntityCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipe")
-    private Collection<InvestimentoConfigEntity> investimentoConfigEntityCollection;
 
     public EquipeEntity() {
     }
@@ -58,10 +68,10 @@ public class EquipeEntity implements Serializable {
         this.id = id;
     }
 
-    public EquipeEntity(Integer id, String equipe, String color) {
+    public EquipeEntity(Integer id, String nome, String cor) {
         this.id = id;
-        this.equipe = equipe;
-        this.color = color;
+        this.nome = nome;
+        this.cor = cor;
     }
 
     public Integer getId() {
@@ -72,36 +82,38 @@ public class EquipeEntity implements Serializable {
         this.id = id;
     }
 
-    public String getEquipe() {
-        return equipe;
+    public String getNome() {
+        return nome;
     }
 
-    public void setEquipe(String equipe) {
-        this.equipe = equipe;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getColor() {
-        return color;
+    public String getCor() {
+        return cor;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
+    @XmlTransient
+    public Collection<ConfiguracaoEntity> getConfiguracaoEntityCollection() {
+        return configuracaoEntityCollection;
+    }
+
+    public void setConfiguracaoEntityCollection(Collection<ConfiguracaoEntity> configuracaoEntityCollection) {
+        this.configuracaoEntityCollection = configuracaoEntityCollection;
+    }
+
+    @XmlTransient
     public Collection<IndicadoEntity> getIndicadoEntityCollection() {
         return indicadoEntityCollection;
     }
 
     public void setIndicadoEntityCollection(Collection<IndicadoEntity> indicadoEntityCollection) {
         this.indicadoEntityCollection = indicadoEntityCollection;
-    }
-
-    public Collection<InvestimentoConfigEntity> getInvestimentoConfigEntityCollection() {
-        return investimentoConfigEntityCollection;
-    }
-
-    public void setInvestimentoConfigEntityCollection(Collection<InvestimentoConfigEntity> investimentoConfigEntityCollection) {
-        this.investimentoConfigEntityCollection = investimentoConfigEntityCollection;
     }
 
     @Override

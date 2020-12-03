@@ -24,23 +24,26 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
-@Table(name = "investimento", catalog = "conectcoin", schema = "", uniqueConstraints = {
+@Table(name = "investimento_pedido", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InvestimentoEntity.findAll", query = "SELECT i FROM InvestimentoEntity i"),
-    @NamedQuery(name = "InvestimentoEntity.findById", query = "SELECT i FROM InvestimentoEntity i WHERE i.id = :id"),
-    @NamedQuery(name = "InvestimentoEntity.findByDataSolicitacao", query = "SELECT i FROM InvestimentoEntity i WHERE i.dataSolicitacao = :dataSolicitacao"),
-    @NamedQuery(name = "InvestimentoEntity.findByValor", query = "SELECT i FROM InvestimentoEntity i WHERE i.valor = :valor"),
-    @NamedQuery(name = "InvestimentoEntity.findByPontos", query = "SELECT i FROM InvestimentoEntity i WHERE i.pontos = :pontos"),
-    @NamedQuery(name = "InvestimentoEntity.findByQuantidade", query = "SELECT i FROM InvestimentoEntity i WHERE i.quantidade = :quantidade"),
-    @NamedQuery(name = "InvestimentoEntity.findByDataExpiracao", query = "SELECT i FROM InvestimentoEntity i WHERE i.dataExpiracao = :dataExpiracao")})
-public class InvestimentoEntity implements Serializable {
+    @NamedQuery(name = "InvestimentoPedidoEntity.findAll", query = "SELECT i FROM InvestimentoPedidoEntity i"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findById", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.id = :id"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findByDataSolicitacao", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.dataSolicitacao = :dataSolicitacao"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findByValor", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.valor = :valor"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findByPontos", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.pontos = :pontos"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findByQuantidade", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.quantidade = :quantidade"),
+    @NamedQuery(name = "InvestimentoPedidoEntity.findByDataExpiracao", query = "SELECT i FROM InvestimentoPedidoEntity i WHERE i.dataExpiracao = :dataExpiracao")})
+public class InvestimentoPedidoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,46 +52,51 @@ public class InvestimentoEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_solicitacao", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataSolicitacao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor", nullable = false, precision = 10, scale = 2)
     private BigDecimal valor;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "pontos", nullable = false)
     private int pontos;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "quantidade", nullable = false)
     private int quantidade;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_expiracao", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataExpiracao;
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private ClienteEntity idCliente;
+    @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private ClienteEntity idPatrocinador;
     @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private InvestimentoCategoriaEntity idCategoria;
-    @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private InvestidorEntity idPatrocinador;
-    @JoinColumn(name = "id_investidor", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private InvestidorEntity idInvestidor;
     @JoinColumn(name = "id_status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private InvestimentoStatusEntity idStatus;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInvestimento")
     private InvestimentoPagamentoEntity investimentoPagamentoEntity;
 
-    public InvestimentoEntity() {
+    public InvestimentoPedidoEntity() {
     }
 
-    public InvestimentoEntity(Integer id) {
+    public InvestimentoPedidoEntity(Integer id) {
         this.id = id;
     }
 
-    public InvestimentoEntity(Integer id, Date dataSolicitacao, BigDecimal valor, int pontos, int quantidade, Date dataExpiracao) {
+    public InvestimentoPedidoEntity(Integer id, Date dataSolicitacao, BigDecimal valor, int pontos, int quantidade, Date dataExpiracao) {
         this.id = id;
         this.dataSolicitacao = dataSolicitacao;
         this.valor = valor;
@@ -145,28 +153,28 @@ public class InvestimentoEntity implements Serializable {
         this.dataExpiracao = dataExpiracao;
     }
 
+    public ClienteEntity getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(ClienteEntity idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public ClienteEntity getIdPatrocinador() {
+        return idPatrocinador;
+    }
+
+    public void setIdPatrocinador(ClienteEntity idPatrocinador) {
+        this.idPatrocinador = idPatrocinador;
+    }
+
     public InvestimentoCategoriaEntity getIdCategoria() {
         return idCategoria;
     }
 
     public void setIdCategoria(InvestimentoCategoriaEntity idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public InvestidorEntity getIdPatrocinador() {
-        return idPatrocinador;
-    }
-
-    public void setIdPatrocinador(InvestidorEntity idPatrocinador) {
-        this.idPatrocinador = idPatrocinador;
-    }
-
-    public InvestidorEntity getIdInvestidor() {
-        return idInvestidor;
-    }
-
-    public void setIdInvestidor(InvestidorEntity idInvestidor) {
-        this.idInvestidor = idInvestidor;
     }
 
     public InvestimentoStatusEntity getIdStatus() {
@@ -195,10 +203,10 @@ public class InvestimentoEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof InvestimentoEntity)) {
+        if (!(object instanceof InvestimentoPedidoEntity)) {
             return false;
         }
-        InvestimentoEntity other = (InvestimentoEntity) object;
+        InvestimentoPedidoEntity other = (InvestimentoPedidoEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -207,7 +215,7 @@ public class InvestimentoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.firecode.app.model.entity.InvestimentoEntity[ id=" + id + " ]";
+        return "com.firecode.app.model.entity.InvestimentoPedidoEntity[ id=" + id + " ]";
     }
     
 }

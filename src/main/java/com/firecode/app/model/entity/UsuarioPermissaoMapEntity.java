@@ -19,15 +19,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "usuario_permissao_map", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_usuario"}),
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UsuarioPermissaoMapEntity.findAll", query = "SELECT u FROM UsuarioPermissaoMapEntity u"),
     @NamedQuery(name = "UsuarioPermissaoMapEntity.findById", query = "SELECT u FROM UsuarioPermissaoMapEntity u WHERE u.id = :id")})

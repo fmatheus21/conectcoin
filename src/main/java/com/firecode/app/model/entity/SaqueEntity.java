@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.firecode.app.model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,56 +11,56 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-/**
- *
- * @author Fernando Matheus
- */
 @Entity
 @Table(name = "saque", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"})})
-@NamedQueries({
-    @NamedQuery(name = "SaqueEntity.findAll", query = "SELECT s FROM SaqueEntity s"),
-    @NamedQuery(name = "SaqueEntity.findById", query = "SELECT s FROM SaqueEntity s WHERE s.id = :id"),
-    @NamedQuery(name = "SaqueEntity.findByValorSolicitado", query = "SELECT s FROM SaqueEntity s WHERE s.valorSolicitado = :valorSolicitado"),
-    @NamedQuery(name = "SaqueEntity.findByDataSolicitacao", query = "SELECT s FROM SaqueEntity s WHERE s.dataSolicitacao = :dataSolicitacao"),
-    @NamedQuery(name = "SaqueEntity.findByTipoRecebimento", query = "SELECT s FROM SaqueEntity s WHERE s.tipoRecebimento = :tipoRecebimento"),
-    @NamedQuery(name = "SaqueEntity.findByValorDesconto", query = "SELECT s FROM SaqueEntity s WHERE s.valorDesconto = :valorDesconto"),
-    @NamedQuery(name = "SaqueEntity.findByValorSaque", query = "SELECT s FROM SaqueEntity s WHERE s.valorSaque = :valorSaque")})
+
 public class SaqueEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_solicitado", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorSolicitado;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_solicitacao", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataSolicitacao;
+    private LocalDateTime dataSolicitacao;
+
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "tipo_recebimento", nullable = false, length = 45)
     private String tipoRecebimento;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_desconto", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorDesconto;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor_saque", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorSaque;
-    @JoinColumn(name = "id_saldo", referencedColumnName = "id", nullable = false)
+
+    @JoinColumn(name = "id_conta", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private SaldoEntity idSaldo;
+    private ContaEntity contaEntity;
+
     @JoinColumn(name = "id_status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private SaqueStatusEntity idStatus;
@@ -75,15 +70,6 @@ public class SaqueEntity implements Serializable {
 
     public SaqueEntity(Integer id) {
         this.id = id;
-    }
-
-    public SaqueEntity(Integer id, BigDecimal valorSolicitado, Date dataSolicitacao, String tipoRecebimento, BigDecimal valorDesconto, BigDecimal valorSaque) {
-        this.id = id;
-        this.valorSolicitado = valorSolicitado;
-        this.dataSolicitacao = dataSolicitacao;
-        this.tipoRecebimento = tipoRecebimento;
-        this.valorDesconto = valorDesconto;
-        this.valorSaque = valorSaque;
     }
 
     public Integer getId() {
@@ -102,11 +88,11 @@ public class SaqueEntity implements Serializable {
         this.valorSolicitado = valorSolicitado;
     }
 
-    public Date getDataSolicitacao() {
+    public LocalDateTime getDataSolicitacao() {
         return dataSolicitacao;
     }
 
-    public void setDataSolicitacao(Date dataSolicitacao) {
+    public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
 
@@ -134,12 +120,12 @@ public class SaqueEntity implements Serializable {
         this.valorSaque = valorSaque;
     }
 
-    public SaldoEntity getIdSaldo() {
-        return idSaldo;
+    public ContaEntity getContaEntity() {
+        return contaEntity;
     }
 
-    public void setIdSaldo(SaldoEntity idSaldo) {
-        this.idSaldo = idSaldo;
+    public void setContaEntity(ContaEntity contaEntity) {
+        this.contaEntity = contaEntity;
     }
 
     public SaqueStatusEntity getIdStatus() {
@@ -164,15 +150,12 @@ public class SaqueEntity implements Serializable {
             return false;
         }
         SaqueEntity other = (SaqueEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
         return "com.firecode.app.model.entity.SaqueEntity[ id=" + id + " ]";
     }
-    
+
 }

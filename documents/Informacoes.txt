@@ -1,0 +1,91 @@
+https://www.opusinvestimentos.com/panel/login
+Login: fagner17
+Senha: Ff19952205
+
+Investimento 30%.  indicação5% ganhe 6% de sua menor equipe
+
+http://cep.republicavirtual.com.br/web_cep.php?cep=21340220&formato=xml
+
+https://registro.br
+Usuário: 018.033.814-50
+Senha: fagner41@
+http://conectcoinstore.com.br
+
+
+--------------------------------------------------
+
+* Retirar do Cadastro de Cliente o Cadastro de Conta Bancária. Deixar este cadastro como optativo para o cliente
+* Continuar Saque
+* Implementar cadastro de documentos
+* Implementar atualização para pagamento de Investimento 30%. Será realizado 6 pagamentos contados a partir da data de aniversário do investimento.
+* Analisar Cadastro de Cliente - OK
+
+
+Tema escolhido
+https://wp.xpeedstudio.com/marketo/
+
+
+
+Pagamento
+
+Coinbase
+https://commerce.coinbase.com/docs
+API keys: cca68c59-9146-478c-8ad2-4e98e7b09997
+ZGVWtGarNj2175cR
+$2y$10$ZOtBCW6PQ7T3/w6s5hjKp.PFnJ4UfuMYYW05YxCrhdl6RAC99HqRm
+Conectcoin@gmail.com
+Senhor: Ff19952205
+b64d-07d7
+cd74-f6dc
+9069-8802
+bc3a-ca65
+bdd3-5e58
+cebd-9621
+782a-43b1
+1c07-ec02
+ac70-ca04
+53d7-b1d9
+99c5-d669
+ce72-a65b
+3f95-6cbe
+e632-2430
+8f82-02ca
+894d-5ca2
+
+POST
+https://api.commerce.coinbase.com/checkouts
+Content-Type : application/json
+X-CC-Api-Key : cca68c59-9146-478c-8ad2-4e98e7b09997
+X-CC-Version : 2018-03-22
+
+--------------------------------------
+
+Karmoney
+https://doc.kamoney.com.br/
+$2y$10$.lRG/j0tW8dZp5hOh9bKMOW9vA92nXCmMh/drXgtymwTKnvwhYXXi
+$2y$10$20WGOUTQoDirQvPdagvUk.lhMOn9dzMYvhIZ8eFfrp8LY5YRS7EXe
+
+
+Blockchain
+https://www.blockchain.com/api/blockchain_wallet_api
+ZGVWtGarNj2175cR
+$2y$10$ZOtBCW6PQ7T3/w6s5hjKp.PFnJ4UfuMYYW05YxCrhdl6RAC99HqRm
+
+
+
+<link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/jquery-ui/jquery-ui.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/jquery-ui/jquery-ui.theme.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/select2/css/select2.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/select2-bootstrap-theme/select2-bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/bootstrap-multiselect/bootstrap-multiselect.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/datatables/media/css/dataTables.bootstrap4.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/morris/morris.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/pnotify/pnotify.custom.css}" />	
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/summernote/summernote-bs4.css}" />
+		
+		
+		
+		
+
+
+

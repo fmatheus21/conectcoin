@@ -19,15 +19,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "indicado", catalog = "conectcoin", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id"}),
-    @UniqueConstraint(columnNames = {"id_investidor"})})
+    @UniqueConstraint(columnNames = {"id_cliente"}),
+    @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "IndicadoEntity.findAll", query = "SELECT i FROM IndicadoEntity i"),
     @NamedQuery(name = "IndicadoEntity.findById", query = "SELECT i FROM IndicadoEntity i WHERE i.id = :id")})
@@ -39,15 +41,15 @@ public class IndicadoEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
+    @OneToOne(optional = false)
+    private ClienteEntity idCliente;
+    @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private ClienteEntity idPatrocinador;
     @JoinColumn(name = "id_equipe", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private EquipeEntity idEquipe;
-    @JoinColumn(name = "id_investidor", referencedColumnName = "id", nullable = false)
-    @OneToOne(optional = false)
-    private InvestidorEntity idInvestidor;
-    @JoinColumn(name = "id_patrocinador", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private InvestidorEntity idPatrocinador;
 
     public IndicadoEntity() {
     }
@@ -64,28 +66,28 @@ public class IndicadoEntity implements Serializable {
         this.id = id;
     }
 
+    public ClienteEntity getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(ClienteEntity idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public ClienteEntity getIdPatrocinador() {
+        return idPatrocinador;
+    }
+
+    public void setIdPatrocinador(ClienteEntity idPatrocinador) {
+        this.idPatrocinador = idPatrocinador;
+    }
+
     public EquipeEntity getIdEquipe() {
         return idEquipe;
     }
 
     public void setIdEquipe(EquipeEntity idEquipe) {
         this.idEquipe = idEquipe;
-    }
-
-    public InvestidorEntity getIdInvestidor() {
-        return idInvestidor;
-    }
-
-    public void setIdInvestidor(InvestidorEntity idInvestidor) {
-        this.idInvestidor = idInvestidor;
-    }
-
-    public InvestidorEntity getIdPatrocinador() {
-        return idPatrocinador;
-    }
-
-    public void setIdPatrocinador(InvestidorEntity idPatrocinador) {
-        this.idPatrocinador = idPatrocinador;
     }
 
     @Override

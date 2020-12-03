@@ -22,14 +22,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "pagamento_mensal", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PagamentoMensalEntity.findAll", query = "SELECT p FROM PagamentoMensalEntity p"),
     @NamedQuery(name = "PagamentoMensalEntity.findById", query = "SELECT p FROM PagamentoMensalEntity p WHERE p.id = :id"),
@@ -45,18 +48,20 @@ public class PagamentoMensalEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "data_pagamento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataPagamento;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "valor", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
     @Column(name = "pago")
     private Boolean pago;
-    @JoinColumn(name = "id_investimento_pagamento", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_pagamento", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private InvestimentoPagamentoEntity idInvestimentoPagamento;
+    private InvestimentoPagamentoEntity idPagamento;
 
     public PagamentoMensalEntity() {
     }
@@ -103,12 +108,12 @@ public class PagamentoMensalEntity implements Serializable {
         this.pago = pago;
     }
 
-    public InvestimentoPagamentoEntity getIdInvestimentoPagamento() {
-        return idInvestimentoPagamento;
+    public InvestimentoPagamentoEntity getIdPagamento() {
+        return idPagamento;
     }
 
-    public void setIdInvestimentoPagamento(InvestimentoPagamentoEntity idInvestimentoPagamento) {
-        this.idInvestimentoPagamento = idInvestimentoPagamento;
+    public void setIdPagamento(InvestimentoPagamentoEntity idPagamento) {
+        this.idPagamento = idPagamento;
     }
 
     @Override

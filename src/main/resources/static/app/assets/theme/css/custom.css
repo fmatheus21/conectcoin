@@ -5,13 +5,14 @@
     src:url(../fonts/Quicksand-Regular.ttf)
 }
 
-html, body{
-    font-family:Quicksand;
+
+html, body, button, .select {
+    font-family:Quicksand !important;
 }
 
 
 .bg-login {
-    background: url(../../dist/img/bg-login.png) no-repeat center center;
+    background: url(../../dist/img/bg/bg-login.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -180,7 +181,6 @@ html, body{
 }
 
 
-
 .custom-select{
     cursor: pointer;
 }
@@ -203,3 +203,27 @@ html, body{
     color: #FFF;   
 }
 
+.form-control-lg{
+    font-size: 1.1rem;
+}
+
+.custom-select {   
+    height: calc(3.25rem + 2px);
+    font-size: 16px;
+}
+
+select > option {
+    font-size: 16px;
+}
+
+.form-control:not(.form-control-sm):not(.form-control-lg) {
+    font-size: 16px;    
+}
+
+mark{
+    background: #ffff66;
+    color:#000;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 10px;
+}

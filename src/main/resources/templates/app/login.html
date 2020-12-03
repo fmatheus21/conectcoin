@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="fixed sidebar-left-xs sidebar-left-collapsed " lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="icon" type="image/png" th:href="@{/app/assets/upload/logo/favicon.png}"/>
+        <title th:text="${pageTitle}"></title>
+
+
+        <!-- Styles -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/bootstrap/css/bootstrap.css?version=1.0}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/animate/animate.css?version=1.0}">
+
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/font-awesome/css/all.min.css?version=1.0}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/magnific-popup/magnific-popup.css?version=1.0}" />
+
+
+        <!-- Theme CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/theme.css?version=1.0}" />
+
+        <!-- Skin CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/skins/default.css?version=1.0}" />
+
+        <!-- Theme Custom CSS -->
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/custom.css?version=1.0}">
+
+        <!-- Head Libs -->
+        <script th:src="@{/app/assets/theme/template-vendor/modernizr/modernizr.js}"></script>
+
+    </head>
+
+    <body class="bg-login">
+        <section class="body-sign ">
+            <div class="center-sign">
+                <div class="text-center">
+                    <img th:src="@{/app/assets/upload/logo/logo.png}" class="w-75 img-fluid" alt="Logo" />
+                </div>
+                <div class="card card-sign">
+                    <div class="card-body mt-3 mb-3">
+
+                        <form id="f-user-login" th:action="@{/perform_login}" method="post">                           
+                            <div class="form-group mb-3">
+                                <label>Usuário ou E-mail</label>
+                                <div class="input-group">
+                                    <input name="username" type="text" class="form-control form-control-lg" autofocus required tabindex="1" />
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <div class="clearfix">
+                                    <label class="float-left">Senha</label>
+                                    <a href="https://opusinvestimentos.com/panel/recovery" class="float-right">Esqueceu sua senha?</a>
+                                </div>
+                                <div class="input-group">
+                                    <input name="password" type="password" class="form-control form-control-lg" autofocus required tabindex="2" />
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary mt-2">Acessar</button>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+                            <span class="mt-3 mb-3 line-thru text-center text-uppercase">
+                                <span>ou</span>
+                            </span>
+
+                            <p class="text-center">Ainda não é cadastrado? <a href="https://opusinvestimentos.com/join">Cadastre-se agora mesmo!</a></p>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vendor -->
+        <script th:src="@{/app/assets/theme/template-vendor/jquery/jquery.js}"></script>
+        <script th:src="@{/app/assets/theme/template-vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
+        <script th:src="@{/app/assets/theme/template-vendor/popper/umd/popper.min.js}"></script>
+        <script th:src="@{/app/assets/theme/template-vendor/bootstrap/js/bootstrap.js}"></script>
+        <script th:src="@{/app/assets/theme/template-vendor/nanoscroller/nanoscroller.js}"></script>
+
+    </body>
+
+</html>

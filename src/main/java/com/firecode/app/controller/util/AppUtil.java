@@ -1,23 +1,30 @@
 package com.firecode.app.controller.util;
 
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.format.CPFFormatter;
+import br.com.caelum.stella.format.Formatter;
+import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.CPFValidator;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.Normalizer;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.text.WordUtils;
 
-@SuppressWarnings("deprecation")
 public class AppUtil {
 
-    /* Converte primeiro caracter em maiusculo */
     public static String convertFirstUppercaseCharacter(String string) {
         return WordUtils.capitalizeFully(string).trim();
     }
 
-    public static String convertsAllUppercaseCharacters(String string) {
+    public static String convertAllUppercaseCharacters(String string) {
         return string.toUpperCase().trim();
     }
 
@@ -43,7 +50,7 @@ public class AppUtil {
         return normalize;
     }
 
-    public static String formatar(String valor, String mascara) {
+    public static String formatMask(String valor, String mascara) {
         String dado = "";
         // remove caracteres nao numericos
         for (int i = 0; i < valor.length(); i++) {
@@ -67,6 +74,28 @@ public class AppUtil {
         return saida;
     }
 
+    public static boolean validateCPF(String value) {
+        CPFValidator validator = new CPFValidator();
+        List<ValidationMessage> erros = validator.invalidMessagesFor(value);
+        return erros.size() <= 0;
+    }
+
+    public static boolean validateCNPJ(String value) {
+        CNPJValidator validator = new CNPJValidator();
+        List<ValidationMessage> erros = validator.invalidMessagesFor(value);
+        return erros.size() <= 0;
+    }
+
+    public static String formatCPF(String cpf) {
+        Formatter formatter = new CPFFormatter();
+        return formatter.format(cpf);
+    }
+
+    public static String formatCNPJ(String cnpj) {
+        Formatter formatter = new CNPJFormatter();
+        return formatter.format(cnpj);
+    }
+
     public static boolean validateEmail(String email) {
         if (email != null && email.length() > 0) {
             String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
@@ -79,26 +108,45 @@ public class AppUtil {
         return false;
     }
 
-    public static boolean checkExistenceNumber(String value) {
-        Pattern pattern = Pattern.compile("[^\\s A-z]+");
-        Matcher match = pattern.matcher(value);
-        return match.find(); // Retorna true caso exista numero na string
+    /* Verifica se o arquivo existe em um diretorio */
+    public static boolean checkArchiveExists(String directory) {
+        File file = new File(directory);
+        if (file.exists()) {
+            return true;
+        } else if (!file.exists()) {
+            return false;
+        }
+        return false;
     }
 
-    /* Listar todos arquivos em um diretorio */
-    public static List<String> listFilesDirectory(String directory) {
+    public static boolean createDirectoy(String directory) {
         File file = new File(directory);
-        List<String> list = new ArrayList<>();
-        for (File f : file.listFiles()) {
-            if (f.isFile()) {
-                list.add(f.getName());
+        if (!file.exists()) {
+            file.mkdirs();
+            return true;
+        } else if (file.exists()) {
+            return false;
+        }
+        return false;
+    }
+
+    public static void deleteFile(File file) {
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+    public static void copyFile(String source, String destiny) throws IOException {
+        OutputStream out;
+        try (InputStream in = new FileInputStream(new File(source))) {
+            out = new FileOutputStream(new File(destiny));
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
             }
         }
-        return list;
-    }
-
-    public static String replaceCharacters(String string, String value, String replace) {
-        return string.replace(value, replace);
+        out.close();
     }
 
     public static String returnFirstWord(String texto) {
@@ -133,29 +181,6 @@ public class AppUtil {
 
     public static long runtimeEnd() {
         return System.currentTimeMillis();
-    }
-
-    /*
-	 * Retorna pate de uma string de acordo com o delimitador. Exemplo: API_REST.
-	 * Resultado: API
-     */
-    public static String returnDelimiterString(String value, String delimiter) {
-        if (value.contains(" ")) {
-            return value.substring(0, value.indexOf(delimiter));
-        }
-        System.out.println("value: " + value);
-        return value;
-    }
-
-    /* Gera numeros aleatorios no formato long */
-    public static long randomNumber() {
-        Random random = new Random();
-        return random.nextLong();
-    }
-
-    public static String removeExtensionFile(String nameFile) {
-        nameFile = nameFile.replace(".png", "");
-        return nameFile;
     }
 
 }

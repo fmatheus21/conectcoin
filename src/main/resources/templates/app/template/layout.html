@@ -7,31 +7,33 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="shortcut icon" th:href="@{/app/assets/dist/img/favicon.ico}">
+        <link rel="icon" type="image/png" th:href="@{/app/assets/upload/logo/favicon.png}"/>
         <title th:text="${pageTitle}"></title>
         <meta name="description" content="Default form examples" />
 
 
         <!-- Styles -->
-        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/bootstrap/css/bootstrap.css}" />
-        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/animate/animate.css}">
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/bootstrap/css/bootstrap.css?version=1.0}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/animate/animate.css?version=1.0}">
 
-        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/font-awesome/css/all.min.css}" />
-        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/magnific-popup/magnific-popup.css}" />
-              	
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/font-awesome/css/all.min.css?version=1.0}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/template-vendor/magnific-popup/magnific-popup.css?version=1.0}" />
+
 
         <!-- Theme CSS -->
-        <link rel="stylesheet" th:href="@{/app/assets/theme/css/theme.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/theme.css?version=1.0}">
 
         <!-- Skin CSS -->
-        <link rel="stylesheet" th:href="@{/app/assets/theme/css/skins/default.css}" />
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/skins/default.css?version=1.0}">
 
         <!-- Theme Custom CSS -->
-        <link rel="stylesheet" th:href="@{/app/assets/theme/css/custom.css}">
+        <link rel="stylesheet" th:href="@{/app/assets/theme/css/custom.css?version=1.0}">
 
         <!-- Head Libs -->
         <script th:src="@{/app/assets/theme/template-vendor/modernizr/modernizr.js}"></script>
 
+
+        <link rel="stylesheet" th:href="@{/app/assets/dist/css/floating-labels.css?version=1.0}">
 
 
     </head>
@@ -65,11 +67,11 @@
             <!-- Content Fragment -->
             <div layout:fragment="content"></div>
             <!-- Content Fragment -->            
-            
+
 
         </section>
-        
-        
+
+
     </div>
 
 
@@ -89,6 +91,8 @@
 <script th:src="@{/app/assets/theme/template-vendor/popper/umd/popper.min.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/bootstrap/js/bootstrap.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/nanoscroller/nanoscroller.js}"></script>
+<script th:src="@{/app/assets/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js}"></script>
+
 
 <!--<script th:src="@{/app/assets/theme/template-vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/common/common.js}"></script>
@@ -115,8 +119,8 @@
 <script th:src="@{/app/assets/theme/template-vendor/gauge/gauge.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/snap.svg/snap.svg.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/liquid-meter/liquid.meter.js}"></script>
-<script th:src="@{/app/assets/theme/template-vendor/ios7-switch/ios7-switch.js}"></script>-->
-<script th:src="@{/app/assets/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js}"></script>
+<script th:src="@{/app/assets/theme/template-vendor/ios7-switch/ios7-switch.js}"></script>
+<script th:src="@{/app/assets/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js}"></script>-->
 <!--<script th:src="@{/app/assets/theme/template-vendor/pnotify/pnotify.custom.js}"></script>
 <script th:src="@{/app/assets/theme/template-vendor/summernote/summernote-bs4.js}"></script>-->
 
@@ -131,17 +135,14 @@
 
 <script th:src="@{/app/assets/theme/js/breadcrumbs.js}"></script>
 
- <script th:src="@{/app/assets/theme/js/mask.js}"></script>
-
-
+<script th:src="@{/app/assets/theme/js/mask.js}"></script>
 
 <script type="text/javascript">
-for (var i = 0; i < document.links.length; i++) {
-    if (document.links[i].href === document.URL) {
-        document.links[i].className = 'nav-active';
+    for (var i = 0; i < document.links.length; i++) {
+        if (document.links[i].href === document.URL) {
+            document.links[i].className = 'nav-active';
+        }
     }
-}  
-    
 </script>
 
 

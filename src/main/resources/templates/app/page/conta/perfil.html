@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{app/template/layout}">   
+    <!-- Fragment -->
+    <div layout:fragment="content">
+
+
+        <!-- Card -->
+        <div class="card card-primary">
+
+            <header class="card-header">
+                <h2 class="card-title">
+                    <i class="fa fa-list"></i>
+                    [[${headerTitle}]]
+                </h2>
+            </header>
+
+            <!-- Form -->
+            <form id="form" action="post">
+
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- Container -->
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-label-group">
+                                    <input id="nome" type="text" th:field="*{modelPerfil.nome}" class="form-control" placeholder="Nome Completo" disabled>
+                                    <label for="nome">Nome Completo</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-6 col-lg-3">
+                                <div class="form-label-group">
+                                    <input id="cpf" type="text" th:field="*{modelPerfil.cpf}" class="form-control" placeholder="CPF" disabled>
+                                    <label for="cpf">CPF</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-6 col-lg-3">
+                                <div class="form-label-group">
+                                    <input id="dataNascimento" type="text" th:field="*{modelPerfil.dataNascimento}" class="form-control" placeholder="Data de Nascimento" disabled>
+                                    <label for="dataNascimento">Data de Nascimento</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">                        
+                            <div class="form-group col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-label-group">
+                                    <select class="custom-select" th:field="*{modelPerfil.idGenero}" required>                                       
+                                        <option class="option" th:each="genero : ${modelGeneros}" th:value="${genero.id}"
+                                                th:text="${genero.nome}" selected></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-label-group">
+                                    <input id="email" type="email" th:field="*{modelPerfil.email}" class="form-control" placeholder="Email" disabled>
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-label-group">
+                                    <input id="telefone" type="text" th:field="*{modelPerfil.telefone}" class="form-control phone-mask" placeholder="Telefone">
+                                    <label for="telefone">Telefone</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">   
+                            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-label-group">
+                                    <input id="carteiraBitcoin" type="text" class="form-control" placeholder="Carteira Bitcoin">
+                                    <label for="carteiraBitcoin">Carteira Bitcoin</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-danger text-center">
+                            <h4>Atenção!</h4>
+                            <p>Suas contas deverão estar no nome e cpf do titular da conta <mark>Conectcoin</mark>. Não será aceito cadastros de contas bancárias em nome de terceiros.</p> 
+                        </div>
+
+                        <div class="row">                        
+                            <div class="form-group col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-label-group">
+                                    <select class="custom-select" required>
+                                        <option value="" selected>Banco</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-label-group">
+                                    <select name="tipoConta" class="custom-select" required>
+                                        <option value="" selected>Tipo de Conta</option>
+                                        <option value="1">Conta Corrente</option>
+                                        <option value="2">Conta Poupança</option>                                   
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-6 col-lg-2">
+                                <div class="form-label-group">
+                                    <input id="agencia" type="text" class="form-control" placeholder="Agência" required>
+                                    <label for="agencia">Agência</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-3 col-lg-2">
+                                <div class="form-label-group">
+                                    <input id="numeroConta" type="text" class="form-control" placeholder="Nº Conta" required>
+                                    <label for="numeroConta">Nº Conta</label>
+                                </div>
+                            </div>
+                        </div>  
+
+
+                    </div>
+                    <!-- Container -->
+                </div>
+                <!-- Card Body -->
+
+                <!-- Card Footer -->
+                <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> 
+                        Salvar Alterações
+                    </button>
+                </div>
+                <!-- Card Footer -->
+
+            </form>
+
+        </div>
+        <!-- Card -->
+
+
+
+
+     <!--   <script th:src="@{/app/assets/theme/template-vendor/jquery/jquery.js}"></script>
+        <script src="hhttps://cdnjs.com/libraries/jquery.mask"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('.date').mask('00/00/0000');
+                $('.time').mask('00:00:00');
+                $('.cep').mask('00000-000');
+                $('.phone').mask('(00) 00000-0000');
+                $('.cpf').mask('000.000.000-00');
+                $('.money').mask('000.000.000.000,00');
+            });
+        </script>-->
+
+
+
+    </div>
+    <!-- Fragment -->
+</html>

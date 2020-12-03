@@ -19,15 +19,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "permissao", catalog = "conectcoin", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id"}),
     @UniqueConstraint(columnNames = {"nome"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PermissaoEntity.findAll", query = "SELECT p FROM PermissaoEntity p"),
     @NamedQuery(name = "PermissaoEntity.findById", query = "SELECT p FROM PermissaoEntity p WHERE p.id = :id"),
@@ -42,10 +46,14 @@ public class PermissaoEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nome", nullable = false, length = 10)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
     @Basic(optional = false)
-    @Column(name = "descricao", nullable = false, length = 15)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermissao")
     private Collection<UsuarioPermissaoMapEntity> usuarioPermissaoMapEntityCollection;
@@ -87,6 +95,7 @@ public class PermissaoEntity implements Serializable {
         this.descricao = descricao;
     }
 
+    @XmlTransient
     public Collection<UsuarioPermissaoMapEntity> getUsuarioPermissaoMapEntityCollection() {
         return usuarioPermissaoMapEntityCollection;
     }

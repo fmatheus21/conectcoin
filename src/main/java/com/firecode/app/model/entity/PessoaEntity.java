@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.firecode.app.model.entity;
 
+import com.firecode.app.controller.util.AppUtil;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,62 +12,62 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Fernando Matheus
- */
 @Entity
 @Table(name = "pessoa", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"}),
     @UniqueConstraint(columnNames = {"cpf_cnpj"})})
-@NamedQueries({
-    @NamedQuery(name = "PessoaEntity.findAll", query = "SELECT p FROM PessoaEntity p"),
-    @NamedQuery(name = "PessoaEntity.findById", query = "SELECT p FROM PessoaEntity p WHERE p.id = :id"),
-    @NamedQuery(name = "PessoaEntity.findByNomeRazaosocial", query = "SELECT p FROM PessoaEntity p WHERE p.nomeRazaosocial = :nomeRazaosocial"),
-    @NamedQuery(name = "PessoaEntity.findByCpfCnpj", query = "SELECT p FROM PessoaEntity p WHERE p.cpfCnpj = :cpfCnpj")})
+
 public class PessoaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+
     @Basic(optional = false)
-    @Column(name = "nome_razaosocial", nullable = false, length = 70)
-    private String nomeRazaosocial;
+    @NotNull
+    @Size(min = 1, max = 70)
+    @Column(name = "nome_rasaosocial", nullable = false, length = 70)
+    private String nomeRasaosocial;
+
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "cpf_cnpj", nullable = false, length = 20)
     private String cpfCnpj;
+
     @JoinColumn(name = "id_tipo", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private PessoaTipoEntity idTipo;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idPessoa")
-    private EnderecoEntity enderecoEntity;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idPessoa")
-    private InvestidorEntity investidorEntity;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idPessoa")
-    private UsuarioEntity usuarioEntity;
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idPessoa")
     private ContatoEntity contatoEntity;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaEntity")
+    private Collection<EnderecoEntity> enderecoEntityCollection;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idPessoa")
+    private ClienteEntity clienteEntity;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaEntity")
+    private Collection<UsuarioEntity> usuarioEntityCollection;
 
     public PessoaEntity() {
     }
 
     public PessoaEntity(Integer id) {
         this.id = id;
-    }
-
-    public PessoaEntity(Integer id, String nomeRazaosocial, String cpfCnpj) {
-        this.id = id;
-        this.nomeRazaosocial = nomeRazaosocial;
-        this.cpfCnpj = cpfCnpj;
     }
 
     public Integer getId() {
@@ -81,20 +78,30 @@ public class PessoaEntity implements Serializable {
         this.id = id;
     }
 
-    public String getNomeRazaosocial() {
-        return nomeRazaosocial;
+    public String getNomeRasaosocial() {
+        if (nomeRasaosocial != null) {
+            return AppUtil.convertFirstUppercaseCharacter(AppUtil.removeDuplicateSpace(nomeRasaosocial));
+        }
+        return nomeRasaosocial;
     }
 
-    public void setNomeRazaosocial(String nomeRazaosocial) {
-        this.nomeRazaosocial = nomeRazaosocial;
+    public void setNomeRasaosocial(String nomeRasaosocial) {
+        this.nomeRasaosocial = AppUtil.convertAllUppercaseCharacters(AppUtil.removeDuplicateSpace(nomeRasaosocial));
     }
 
     public String getCpfCnpj() {
+        if (cpfCnpj != null) {
+            if (idTipo.getId() == 1) {
+                return AppUtil.formatCPF(cpfCnpj);
+            } else if (idTipo.getId() == 2) {
+                return AppUtil.formatCNPJ(cpfCnpj);
+            }
+        }
         return cpfCnpj;
     }
 
     public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+        this.cpfCnpj = AppUtil.removeSpecialCharacters(cpfCnpj);
     }
 
     public PessoaTipoEntity getIdTipo() {
@@ -105,36 +112,38 @@ public class PessoaEntity implements Serializable {
         this.idTipo = idTipo;
     }
 
-    public EnderecoEntity getEnderecoEntity() {
-        return enderecoEntity;
-    }
-
-    public void setEnderecoEntity(EnderecoEntity enderecoEntity) {
-        this.enderecoEntity = enderecoEntity;
-    }
-
-    public InvestidorEntity getInvestidorEntity() {
-        return investidorEntity;
-    }
-
-    public void setInvestidorEntity(InvestidorEntity investidorEntity) {
-        this.investidorEntity = investidorEntity;
-    }
-
-    public UsuarioEntity getUsuarioEntity() {
-        return usuarioEntity;
-    }
-
-    public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
-        this.usuarioEntity = usuarioEntity;
-    }
-
     public ContatoEntity getContatoEntity() {
         return contatoEntity;
     }
 
     public void setContatoEntity(ContatoEntity contatoEntity) {
         this.contatoEntity = contatoEntity;
+    }
+
+    @XmlTransient
+    public Collection<EnderecoEntity> getEnderecoEntityCollection() {
+        return enderecoEntityCollection;
+    }
+
+    public void setEnderecoEntityCollection(Collection<EnderecoEntity> enderecoEntityCollection) {
+        this.enderecoEntityCollection = enderecoEntityCollection;
+    }
+
+    public ClienteEntity getClienteEntity() {
+        return clienteEntity;
+    }
+
+    public void setClienteEntity(ClienteEntity clienteEntity) {
+        this.clienteEntity = clienteEntity;
+    }
+
+    @XmlTransient
+    public Collection<UsuarioEntity> getUsuarioEntityCollection() {
+        return usuarioEntityCollection;
+    }
+
+    public void setUsuarioEntityCollection(Collection<UsuarioEntity> usuarioEntityCollection) {
+        this.usuarioEntityCollection = usuarioEntityCollection;
     }
 
     @Override
@@ -151,15 +160,12 @@ public class PessoaEntity implements Serializable {
             return false;
         }
         PessoaEntity other = (PessoaEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
         return "com.firecode.app.model.entity.PessoaEntity[ id=" + id + " ]";
     }
-    
+
 }

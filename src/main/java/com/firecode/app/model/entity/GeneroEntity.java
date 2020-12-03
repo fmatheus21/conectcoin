@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.firecode.app.model.entity;
 
+import com.firecode.app.controller.util.AppUtil;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -14,48 +10,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Fernando Matheus
- */
 @Entity
 @Table(name = "genero", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"}),
     @UniqueConstraint(columnNames = {"nome"})})
-@NamedQueries({
-    @NamedQuery(name = "GeneroEntity.findAll", query = "SELECT g FROM GeneroEntity g"),
-    @NamedQuery(name = "GeneroEntity.findById", query = "SELECT g FROM GeneroEntity g WHERE g.id = :id"),
-    @NamedQuery(name = "GeneroEntity.findByNome", query = "SELECT g FROM GeneroEntity g WHERE g.nome = :nome")})
+
 public class GeneroEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "nome", nullable = false, length = 15)
     private String nome;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idGenero")
-    private Collection<InvestidorEntity> investidorEntityCollection;
+    private Collection<ClienteEntity> clienteEntityCollection;
 
     public GeneroEntity() {
     }
 
     public GeneroEntity(Integer id) {
         this.id = id;
-    }
-
-    public GeneroEntity(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
     }
 
     public Integer getId() {
@@ -67,19 +57,23 @@ public class GeneroEntity implements Serializable {
     }
 
     public String getNome() {
+        if (nome != null) {
+            return AppUtil.convertFirstUppercaseCharacter(AppUtil.removeDuplicateSpace(nome));
+        }
         return nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = AppUtil.convertAllUppercaseCharacters(AppUtil.removeDuplicateSpace(nome));
     }
 
-    public Collection<InvestidorEntity> getInvestidorEntityCollection() {
-        return investidorEntityCollection;
+    @XmlTransient
+    public Collection<ClienteEntity> getClienteEntityCollection() {
+        return clienteEntityCollection;
     }
 
-    public void setInvestidorEntityCollection(Collection<InvestidorEntity> investidorEntityCollection) {
-        this.investidorEntityCollection = investidorEntityCollection;
+    public void setClienteEntityCollection(Collection<ClienteEntity> clienteEntityCollection) {
+        this.clienteEntityCollection = clienteEntityCollection;
     }
 
     @Override
@@ -96,15 +90,12 @@ public class GeneroEntity implements Serializable {
             return false;
         }
         GeneroEntity other = (GeneroEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
         return "com.firecode.app.model.entity.GeneroEntity[ id=" + id + " ]";
     }
-    
+
 }

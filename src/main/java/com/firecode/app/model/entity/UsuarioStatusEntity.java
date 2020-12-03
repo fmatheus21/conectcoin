@@ -19,19 +19,24 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Fernando Matheus
+ * @author fmatheus
  */
 @Entity
 @Table(name = "usuario_status", catalog = "conectcoin", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id"}),
-    @UniqueConstraint(columnNames = {"status"})})
+    @UniqueConstraint(columnNames = {"nome"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UsuarioStatusEntity.findAll", query = "SELECT u FROM UsuarioStatusEntity u"),
     @NamedQuery(name = "UsuarioStatusEntity.findById", query = "SELECT u FROM UsuarioStatusEntity u WHERE u.id = :id"),
-    @NamedQuery(name = "UsuarioStatusEntity.findByStatus", query = "SELECT u FROM UsuarioStatusEntity u WHERE u.status = :status")})
+    @NamedQuery(name = "UsuarioStatusEntity.findByNome", query = "SELECT u FROM UsuarioStatusEntity u WHERE u.nome = :nome")})
 public class UsuarioStatusEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,9 +46,11 @@ public class UsuarioStatusEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "status", nullable = false, length = 20)
-    private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nome", nullable = false, length = 45)
+    private String nome;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioStatusEntity")
     private Collection<UsuarioEntity> usuarioEntityCollection;
 
     public UsuarioStatusEntity() {
@@ -53,9 +60,9 @@ public class UsuarioStatusEntity implements Serializable {
         this.id = id;
     }
 
-    public UsuarioStatusEntity(Integer id, String status) {
+    public UsuarioStatusEntity(Integer id, String nome) {
         this.id = id;
-        this.status = status;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -66,14 +73,15 @@ public class UsuarioStatusEntity implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getNome() {
+        return nome;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
+    @XmlTransient
     public Collection<UsuarioEntity> getUsuarioEntityCollection() {
         return usuarioEntityCollection;
     }
