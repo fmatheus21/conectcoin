@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "saque", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -32,34 +30,28 @@ public class SaqueEntity implements Serializable {
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @NotNull
     @Column(name = "valor_solicitado", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorSolicitado;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "data_solicitacao", nullable = false)
     private LocalDateTime dataSolicitacao;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "tipo_recebimento", nullable = false, length = 45)
     private String tipoRecebimento;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "valor_desconto", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorDesconto;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "valor_saque", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorSaque;
 
     @JoinColumn(name = "id_conta", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private ContaEntity contaEntity;
+    private ContaEntity idConta;
 
     @JoinColumn(name = "id_status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
@@ -120,12 +112,12 @@ public class SaqueEntity implements Serializable {
         this.valorSaque = valorSaque;
     }
 
-    public ContaEntity getContaEntity() {
-        return contaEntity;
+    public ContaEntity getIdConta() {
+        return idConta;
     }
 
-    public void setContaEntity(ContaEntity contaEntity) {
-        this.contaEntity = contaEntity;
+    public void setIdConta(ContaEntity idConta) {
+        this.idConta = idConta;
     }
 
     public SaqueStatusEntity getIdStatus() {

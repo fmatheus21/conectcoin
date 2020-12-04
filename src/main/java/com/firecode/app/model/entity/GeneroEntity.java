@@ -13,9 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "genero", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -33,8 +30,6 @@ public class GeneroEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
     @Column(name = "nome", nullable = false, length = 15)
     private String nome;
 
@@ -67,7 +62,6 @@ public class GeneroEntity implements Serializable {
         this.nome = AppUtil.convertAllUppercaseCharacters(AppUtil.removeDuplicateSpace(nome));
     }
 
-    @XmlTransient
     public Collection<ClienteEntity> getClienteEntityCollection() {
         return clienteEntityCollection;
     }

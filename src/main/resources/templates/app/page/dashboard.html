@@ -20,7 +20,7 @@
                                     <div class="summary mt-3">
                                         <h4 class="title">Saldo Disponível</h4>
                                         <div class="info mt-2">
-                                            <strong class="amount">R$ 0,00</strong>
+                                            <strong class="amount">[[${loggedUser.saldoDisponivel}]]</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -180,8 +180,8 @@
                         <div class="card-body p-0">
                             <div class="text-center mt-3">
                                 <img th:src="@{/app/assets/dist/img/user_male.png}" class="img-fluid img-circle" width="150px" />
-                                <h3>Fagner Santos Silva</h3>
-                                <p class="text-muted">fagner17</p>
+                                <h3>[[${loggedUser.nomeCompleto}]]</h3>
+                                <p class="text-muted">[[${loggedUser.userName}]]</p>
                             </div>
                             <table class="table mb-0">
                                 <tr>
@@ -190,11 +190,11 @@
                                 </tr>
                                 <tr>
                                     <th>Pontos Acumulados:</th>
-                                    <td>0,0</td>
+                                    <td>[[${loggedUser.pontos}]]</td>
                                 </tr>
                                 <tr>
                                     <th>Patrocinador:</th>
-                                    <td>fernandomoedasdigitais - Fernando Soares da Silva</td>
+                                    <td>[[${loggedUser.patrocinador}]]</td>
                                 </tr>
                             </table>
                         </div>

@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "banco", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -32,14 +29,10 @@ public class BancoEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "numero", nullable = false, length = 45)
     private String numero;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 70)
     @Column(name = "nome", nullable = false, length = 70)
     private String nome;
 
@@ -77,7 +70,6 @@ public class BancoEntity implements Serializable {
         this.nome = nome;
     }
 
-    @XmlTransient
     public Collection<ContaBancariaEntity> getContaBancariaEntityCollection() {
         return contaBancariaEntityCollection;
     }

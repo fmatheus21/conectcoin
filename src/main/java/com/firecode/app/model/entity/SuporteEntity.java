@@ -1,5 +1,6 @@
 package com.firecode.app.model.entity;
 
+import com.firecode.app.controller.util.AppUtil;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Basic;
@@ -15,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "suporte", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -33,36 +32,29 @@ public class SuporteEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "departamento", nullable = false, length = 45)
     private String departamento;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "assunto", nullable = false, length = 50)
     private String assunto;
 
     @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
     @Column(name = "descricao", nullable = false, length = 2147483647)
     private String descricao;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
     @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private ClienteEntity clienteEntity;
+    private ClienteEntity idCliente;
 
     @JoinColumn(name = "id_status", referencedColumnName = "Id", nullable = false)
     @ManyToOne(optional = false)
-    private SuporteStatusEntity suporteStatusEntity;
+    private SuporteStatusEntity idStatus;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idSuporte")
     private SuporteAnaliseEntity suporteAnaliseEntity;
@@ -83,6 +75,9 @@ public class SuporteEntity implements Serializable {
     }
 
     public String getDepartamento() {
+        if (departamento != null) {
+            return AppUtil.convertFirstUppercaseCharacter(AppUtil.removeDuplicateSpace(departamento));
+        }
         return departamento;
     }
 
@@ -91,11 +86,14 @@ public class SuporteEntity implements Serializable {
     }
 
     public String getAssunto() {
+        if (assunto != null) {
+            return AppUtil.convertFirstUppercaseCharacter(AppUtil.removeDuplicateSpace(assunto));
+        }
         return assunto;
     }
 
     public void setAssunto(String assunto) {
-        this.assunto = assunto;
+        this.assunto = AppUtil.convertAllUppercaseCharacters(AppUtil.removeDuplicateSpace(assunto));
     }
 
     public String getDescricao() {
@@ -114,20 +112,20 @@ public class SuporteEntity implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public ClienteEntity getClienteEntity() {
-        return clienteEntity;
+    public ClienteEntity getIdCliente() {
+        return idCliente;
     }
 
-    public void setClienteEntity(ClienteEntity clienteEntity) {
-        this.clienteEntity = clienteEntity;
+    public void setIdCliente(ClienteEntity idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public SuporteStatusEntity getSuporteStatusEntity() {
-        return suporteStatusEntity;
+    public SuporteStatusEntity getIdStatus() {
+        return idStatus;
     }
 
-    public void setSuporteStatusEntity(SuporteStatusEntity suporteStatusEntity) {
-        this.suporteStatusEntity = suporteStatusEntity;
+    public void setIdStatus(SuporteStatusEntity idStatus) {
+        this.idStatus = idStatus;
     }
 
     public SuporteAnaliseEntity getSuporteAnaliseEntity() {

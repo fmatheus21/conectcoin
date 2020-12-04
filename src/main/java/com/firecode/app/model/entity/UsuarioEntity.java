@@ -19,9 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "usuario", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -40,20 +37,14 @@ public class UsuarioEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "usuario", nullable = false, length = 45)
     private String usuario;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "senha", nullable = false, length = 100)
     private String senha;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "avatar", nullable = false, length = 30)
     private String avatar;
 
@@ -115,7 +106,6 @@ public class UsuarioEntity implements Serializable {
         this.avatar = avatar;
     }
 
-    @XmlTransient
     public Collection<SuporteAnaliseEntity> getSuporteAnaliseEntityCollection() {
         return suporteAnaliseEntityCollection;
     }

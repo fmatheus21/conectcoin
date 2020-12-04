@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "contato", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -31,15 +29,10 @@ public class ContatoEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
     @Column(name = "telefone", nullable = false, length = 15)
     private String telefone;
 
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 70)
     @Column(name = "email", nullable = false, length = 70)
     private String email;
 
@@ -63,11 +56,20 @@ public class ContatoEntity implements Serializable {
     }
 
     public String getTelefone() {
+        if (telefone != null) {
+            int count = AppUtil.countCharacter(telefone);
+            if (count == 10) {
+                return AppUtil.formatMask(telefone, "## ####-####");
+            }
+            if (count == 11) {
+                return AppUtil.formatMask(telefone, "## #####-####");
+            }
+        }
         return telefone;
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.telefone = AppUtil.removeSpecialCharacters(telefone);
     }
 
     public String getEmail() {

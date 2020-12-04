@@ -1,5 +1,6 @@
 package com.firecode.app.model.entity;
 
+import com.firecode.app.controller.util.AppUtil;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "endereco", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -22,7 +21,6 @@ import javax.validation.constraints.Size;
 public class EnderecoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -30,12 +28,9 @@ public class EnderecoEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "numero", nullable = false, length = 10)
     private String numero;
 
-    @Size(max = 45)
     @Column(name = "complemento", length = 45)
     private String complemento;
 
@@ -71,10 +66,16 @@ public class EnderecoEntity implements Serializable {
     }
 
     public String getComplemento() {
+        if (complemento != null) {
+            return AppUtil.convertFirstUppercaseCharacter(AppUtil.removeDuplicateSpace(numero));
+        }
         return complemento;
     }
 
     public void setComplemento(String complemento) {
+        if (complemento != null) {
+            AppUtil.convertAllUppercaseCharacters(AppUtil.removeDuplicateSpace(numero));
+        }
         this.complemento = complemento;
     }
 

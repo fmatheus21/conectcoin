@@ -12,13 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "pessoa", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -36,14 +35,10 @@ public class PessoaEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 70)
     @Column(name = "nome_rasaosocial", nullable = false, length = 70)
     private String nomeRasaosocial;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "cpf_cnpj", nullable = false, length = 20)
     private String cpfCnpj;
 
@@ -120,7 +115,6 @@ public class PessoaEntity implements Serializable {
         this.contatoEntity = contatoEntity;
     }
 
-    @XmlTransient
     public Collection<EnderecoEntity> getEnderecoEntityCollection() {
         return enderecoEntityCollection;
     }
@@ -137,7 +131,6 @@ public class PessoaEntity implements Serializable {
         this.clienteEntity = clienteEntity;
     }
 
-    @XmlTransient
     public Collection<UsuarioEntity> getUsuarioEntityCollection() {
         return usuarioEntityCollection;
     }

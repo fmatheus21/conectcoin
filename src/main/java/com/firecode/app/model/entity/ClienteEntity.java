@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "cliente", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -36,17 +34,14 @@ public class ClienteEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "data_alteracao", nullable = false)
     private LocalDateTime dataAlteracao;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
@@ -56,7 +51,7 @@ public class ClienteEntity implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private ContaEntity contaEntity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteEntity")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private Collection<SuporteEntity> suporteEntityCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
@@ -74,8 +69,8 @@ public class ClienteEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPatrocinador")
     private Collection<IndicadoEntity> indicadoEntityCollection;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteEntity")
-    private Collection<PontuacaoEntity> pontuacaoEntityCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private PontuacaoEntity pontuacaoEntity;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPatrocinador")
     private Collection<ClienteEntity> clienteEntityCollection;
@@ -150,7 +145,6 @@ public class ClienteEntity implements Serializable {
         this.contaEntity = contaEntity;
     }
 
-    @XmlTransient
     public Collection<SuporteEntity> getSuporteEntityCollection() {
         return suporteEntityCollection;
     }
@@ -159,7 +153,6 @@ public class ClienteEntity implements Serializable {
         this.suporteEntityCollection = suporteEntityCollection;
     }
 
-    @XmlTransient
     public Collection<InvestimentoPedidoEntity> getInvestimentoPedidoEntityCollection() {
         return investimentoPedidoEntityCollection;
     }
@@ -168,7 +161,6 @@ public class ClienteEntity implements Serializable {
         this.investimentoPedidoEntityCollection = investimentoPedidoEntityCollection;
     }
 
-    @XmlTransient
     public Collection<InvestimentoPedidoEntity> getInvestimentoPedidoEntityCollection1() {
         return investimentoPedidoEntityCollection1;
     }
@@ -177,7 +169,6 @@ public class ClienteEntity implements Serializable {
         this.investimentoPedidoEntityCollection1 = investimentoPedidoEntityCollection1;
     }
 
-    @XmlTransient
     public Collection<InvestimentoPagamentoEntity> getInvestimentoPagamentoEntityCollection() {
         return investimentoPagamentoEntityCollection;
     }
@@ -194,7 +185,6 @@ public class ClienteEntity implements Serializable {
         this.indicadoEntity = indicadoEntity;
     }
 
-    @XmlTransient
     public Collection<IndicadoEntity> getIndicadoEntityCollection() {
         return indicadoEntityCollection;
     }
@@ -203,16 +193,14 @@ public class ClienteEntity implements Serializable {
         this.indicadoEntityCollection = indicadoEntityCollection;
     }
 
-    @XmlTransient
-    public Collection<PontuacaoEntity> getPontuacaoEntityCollection() {
-        return pontuacaoEntityCollection;
+    public PontuacaoEntity getPontuacaoEntity() {
+        return pontuacaoEntity;
     }
 
-    public void setPontuacaoEntityCollection(Collection<PontuacaoEntity> pontuacaoEntityCollection) {
-        this.pontuacaoEntityCollection = pontuacaoEntityCollection;
+    public void setPontuacaoEntity(PontuacaoEntity pontuacaoEntity) {
+        this.pontuacaoEntity = pontuacaoEntity;
     }
 
-    @XmlTransient
     public Collection<ClienteEntity> getClienteEntityCollection() {
         return clienteEntityCollection;
     }

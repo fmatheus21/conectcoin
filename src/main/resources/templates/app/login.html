@@ -28,13 +28,26 @@
 
         <!-- Theme Custom CSS -->
         <link rel="stylesheet" th:href="@{/app/assets/theme/css/custom.css?version=1.0}">
+        
+         <link rel="stylesheet" th:href="@{/app/assets/theme/css/alert.css?version=1.0}">
 
         <!-- Head Libs -->
-        <script th:src="@{/app/assets/theme/template-vendor/modernizr/modernizr.js}"></script>
+        <script th:src="@{/app/assets/theme/template-vendor/modernizr/modernizr.js}"></script>       
+              
 
     </head>
 
-    <body class="bg-login">
+    <body class="bg-login">    
+        
+          <!-- Mensagem de Logout -->
+        <div th:replace="app/template/message/success-logout :: fragment"></div>
+        <!-- Mensagem de Logout -->
+        
+         <!-- Mensagem de Erro Login -->
+        <div th:replace="app/template/message/error-login :: fragment"></div>
+       <!-- Mensagem de Erro Login -->
+
+
         <section class="body-sign ">
             <div class="center-sign">
                 <div class="text-center">
@@ -95,6 +108,11 @@
         <script th:src="@{/app/assets/theme/template-vendor/popper/umd/popper.min.js}"></script>
         <script th:src="@{/app/assets/theme/template-vendor/bootstrap/js/bootstrap.js}"></script>
         <script th:src="@{/app/assets/theme/template-vendor/nanoscroller/nanoscroller.js}"></script>
+        
+        
+        <script> 
+            $(".message").delay(10000).hide(1000);            
+        </script>
 
     </body>
 

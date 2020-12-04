@@ -1,0 +1,8 @@
+<div th:fragment="fragment" th:if="${param.error}" class="ui-pnotify animate__animated animate__fadeInLeftBig message">
+    <div class="notification ui-pnotify-container notification-danger">
+        <div class="ui-pnotify-icon"><span class="fas fa-check"></span></div>
+        <h4 class="ui-pnotify-title">Erro</h4>
+        <div class="ui-pnotify-text">Usuário ou senha incorretos.</div>
+        <div style="margin-top: 5px; clear: both; text-align: right; display: none;"></div>
+    </div>
+</div>

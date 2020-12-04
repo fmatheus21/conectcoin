@@ -8,11 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pontuacao", catalog = "conectcoin", schema = "", uniqueConstraints = {
@@ -30,29 +28,24 @@ public class PontuacaoEntity implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "pontuacao", nullable = false)
     private int pontuacao;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ponto_esquerda", nullable = false)
     private int pontoEsquerda;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ponto_direita", nullable = false)
     private int pontoDireita;
 
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "status_binario", nullable = false, length = 10)
     private String statusBinario;
 
     @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private ClienteEntity clienteEntity;
+    @OneToOne(optional = false)
+    private ClienteEntity idCliente;
 
     public PontuacaoEntity() {
     }
@@ -101,12 +94,12 @@ public class PontuacaoEntity implements Serializable {
         this.statusBinario = statusBinario;
     }
 
-    public ClienteEntity getClienteEntity() {
-        return clienteEntity;
+    public ClienteEntity getIdCliente() {
+        return idCliente;
     }
 
-    public void setClienteEntity(ClienteEntity clienteEntity) {
-        this.clienteEntity = clienteEntity;
+    public void setIdCliente(ClienteEntity idCliente) {
+        this.idCliente = idCliente;
     }
 
     @Override
